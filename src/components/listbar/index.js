@@ -56,7 +56,7 @@ const useStyles = makeStyles((theme) => ({
     marginTop: 180,
   },
   wallMargin: {
-    marginTop: 450,
+    marginTop: 400,
   },
 }));
 const ListBar = (props) => {

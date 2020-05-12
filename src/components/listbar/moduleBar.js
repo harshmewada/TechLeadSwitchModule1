@@ -3,7 +3,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import { Paper, Divider } from "@material-ui/core";
 import ModuleData from "../../static/ModuleData";
 import ListBar from "./index";
-import ListBarItem from "./listbarItem";
+import WallBarItem from "./wallbarItem";
 import { selectModule } from "../../actions/moduleaction";
 import { useDispatch } from "react-redux";
 import { pushToBox } from "../../actions/sizeaction";
@@ -31,7 +31,7 @@ const ModuleBar = (props) => {
             data.map((data, index) => {
               return (
                 <div key={index}>
-                  <ListBarItem
+                  <WallBarItem
                     data={data}
                     onClick={() => handleClick(index, data)}
                   />

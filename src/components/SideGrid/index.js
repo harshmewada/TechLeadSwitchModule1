@@ -8,6 +8,7 @@ import {
   removeModuleActive,
   setModuleActive,
 } from "../../actions/activemodule";
+import { ShowSnackBar } from "../../actions/snackActions";
 const useStyles = makeStyles((theme) => ({
   container: {
     height: "100%",
@@ -29,12 +30,19 @@ const SideGrid = () => {
   const classes = useStyles();
   const data = SideGridModulesName;
   const active = useSelector((state) => state.activeModule.index);
+
+  const sizeActive = useSelector((state) => state.sizeModule.index);
+  const snackActive = useSelector((state) => state.snackModule.active);
   const dispatch = useDispatch();
   const handleModuleActivation = (index) => {
     // active === index ? console.log("remove") : dispatch(setModuleActive(index));
     // console.log("active", active);
-    active === index
+    active === index && snackActive === false
       ? dispatch(removeModuleActive())
+      : sizeActive === null
+      ? index === 0
+        ? dispatch(setModuleActive(index))
+        : dispatch(ShowSnackBar(true, "error", "Please Select Size First"))
       : dispatch(setModuleActive(index));
   };
   React.useEffect(() => {

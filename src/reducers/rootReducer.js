@@ -4,6 +4,8 @@ import sizeModule from "./sizeReducer/sizeReducer";
 import module from "./moduleReducer/moduleReducer";
 import glassModule from "./glassReducer/glassReducer";
 import wallModule from "./wallReducer/wallReducer";
+import dashModule from "./dashReducer/dashReducer";
+import snackModule from "./snackReducer/snackReducer";
 import { combineReducers } from "redux";
 
 const rootReducer = combineReducers({
@@ -12,6 +14,8 @@ const rootReducer = combineReducers({
   sizeModule,
   module,
   glassModule,
+  dashModule,
+  snackModule,
   wallModule,
 });
 

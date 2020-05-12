@@ -8,6 +8,8 @@ import getBackgroundContainerLenght from "../../functions/getBackgroundContainer
 import SingleBoxLength from "../../functions/SingleBoxLength";
 import createImageUrl from "../../functions/createImageUrl";
 import getStyleObj from "../../functions/getStyleObj";
+import DashSwitch from "../../components/Dashswitch";
+import SnackBar from "../../components/Snackbars/index";
 const useStyles = makeStyles((theme) => ({
   root: {
     // backgroundColor: "red",
@@ -22,6 +24,11 @@ const useStyles = makeStyles((theme) => ({
   },
   dynamic24: {
     height: "32vh",
+  },
+  switchContainer: {
+    position: "absolute",
+    bottom: 80,
+    left: 100,
   },
 }));
 const Dashboard = () => {
@@ -48,6 +55,10 @@ const Dashboard = () => {
       ? wallBg.wallcolor
       : (bgImageType = "image" ? createImageUrl(wallBg.wallcolor) : null);
 
+  const dashvalues = useSelector((state) => state.dashModule);
+  const { led, border } = dashvalues;
+
+  const snackActive = useSelector((state) => state.snackModule.active);
   return (
     <Grid
       container
@@ -63,6 +74,7 @@ const Dashboard = () => {
           justify="center"
           style={{
             background: defaultGlass === null ? defaultBg : defaultGlass.bg,
+            // padding: BoxLength > 0 ? "10vh" : "0vh",
           }}
           component={Paper}
           elevation={4}
@@ -74,18 +86,27 @@ const Dashboard = () => {
                 item
                 lg={lenght}
                 className={clsx(
-                  classes.box,
+                  border === true ? classes.box : null,
                   BoxLength === 1 || BoxLength === 2 || BoxLength === 6
                     ? classes.dynamic24
                     : classes.dynamic22
                 )}
               >
-                {data === 1 ? <div></div> : <BoxContainer data={data} />}
+                {data === 1 ? (
+                  <div></div>
+                ) : (
+                  <BoxContainer data={data} active={led} />
+                )}
               </Grid>
             );
           })}
         </Grid>
       </Grid>
+      <div className={classes.switchContainer}>
+        <DashSwitch />
+      </div>
+      {snackActive && <SnackBar />}
+      {/* {snackActive && <SnackBar />} */}
     </Grid>
   );
 };

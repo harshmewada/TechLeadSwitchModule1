@@ -1,0 +1,17 @@
+<svg width="100" height="100" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M9.5 95.5C11.6667 92.3333 17.3 87.9 22.5 95.5" stroke="black" stroke-width="2.5" stroke-linecap="round"/>
+<path d="M64 95.1964C66.1667 92.0297 71.8 87.5964 77 95.1964" stroke="black" stroke-width="2.5" stroke-linecap="round"/>
+<path d="M23 96C25.3333 92.9815 31.4 88.7556 37 96" stroke="black" stroke-width="2.5" stroke-linecap="round"/>
+<path d="M78 95C80.1667 92.7361 85.8 89.5667 91 95" stroke="black" stroke-width="2.5" stroke-linecap="round"/>
+<path d="M41 14.5C36.4262 41.89 30.8361 60.8141 21.6885 62.8061C12.5259 64.8013 10.3388 61.9761 10 60.8141" stroke="black" stroke-width="2.5" stroke-linecap="round"/>
+<path d="M60 14C64.5738 41.39 70.1639 60.3141 79.3115 62.3061C88.4741 64.3013 90.6612 61.4761 91 60.3141" stroke="black" stroke-width="2.5" stroke-linecap="round"/>
+<rect x="5" y="5" width="90" height="8" stroke="black" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+<line x1="9.25" y1="14.25" x2="9.25" y2="95.75" stroke="black" stroke-width="2.5" stroke-linecap="round"/>
+<line x1="91.25" y1="14.25" x2="91.25" y2="94.75" stroke="black" stroke-width="2.5" stroke-linecap="round"/>
+<line x1="20.6771" y1="63.559" x2="36.559" y2="95.323" stroke="black" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+<line x1="1.25" y1="-1.25" x2="36.7632" y2="-1.25" transform="matrix(-0.447214 0.894427 0.894427 0.447214 82 62)" stroke="black" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+<line x1="22.5149" y1="94.1213" x2="17.5149" y2="74.1213" stroke="black"/>
+<line y1="-0.5" x2="20.6155" y2="-0.5" transform="matrix(0.242536 -0.970142 -0.970142 -0.242536 77 94)" stroke="black"/>
+<path d="M28 14.5C26.6667 24.5 22.9 45.8 18.5 51" stroke="black"/>
+<path d="M73 14C74.3333 24 78.1 45.3 82.5 50.5" stroke="black"/>
+</svg>
