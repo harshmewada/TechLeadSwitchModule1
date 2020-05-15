@@ -26,7 +26,7 @@ const SnackDisplay = (props) => {
       //   key={`${vertical},${horizontal}`}
       open={open}
       onClose={() => handleClose()}
-      autoHideDuration={4000}
+      autoHideDuration={2000}
     >
       <Alert severity={type ? type : "info"}>{message}</Alert>
     </Snackbar>

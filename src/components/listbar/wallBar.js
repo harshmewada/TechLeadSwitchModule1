@@ -4,7 +4,7 @@ import { Paper, Divider, Menu, MenuItem } from "@material-ui/core";
 import SizeModuleData from "../../static/sizeModuleData";
 import ListBar from "./index";
 import ListBarItem from "./listbarItem";
-import { selectSizeModule } from "../../actions/sizeaction";
+import { selectSizeModule, handleEdit } from "../../actions/sizeaction";
 import { useDispatch, useSelector } from "react-redux";
 import SpeedDial from "@material-ui/lab/SpeedDial";
 import SpeedDialAction from "@material-ui/lab/SpeedDialAction";
@@ -35,6 +35,7 @@ const WallBar = (props) => {
   const [wallColor, setWallColor] = React.useState();
   const [selectedImg, setSelectedImg] = React.useState();
   const inputRef = React.useRef(null);
+  const [activeIndex, setActiveIndex] = React.useState(null);
   // const anchorRef = React.useRef(ref);
 
   React.useEffect(() => {
@@ -44,12 +45,17 @@ const WallBar = (props) => {
   const dispatch = useDispatch();
 
   const handleClick = (e, index) => {
-    // dipatch(selectGlassModule(index, WallModuleData[index]));
     if (index === 0) {
       setanchorEl(e.currentTarget);
+      setActiveIndex(null);
     }
     if (index === 1) {
       inputRef.current.click();
+      setActiveIndex(null);
+    }
+    if (index === 2) {
+      setActiveIndex(index);
+      dispatch(handleEdit());
     }
   };
   const handleWallColorChange = (e) => {
@@ -57,9 +63,6 @@ const WallBar = (props) => {
   };
   const handleImageChange = (e) => {
     const file = e.target.files[0];
-
-    // let imgUrl = URL.createObjectURL(file);
-    // dispatch(setWallColorAction(imgUrl));
 
     const reader = new FileReader();
 
@@ -69,17 +72,13 @@ const WallBar = (props) => {
     };
     if (file) {
       reader.readAsDataURL(file);
-      // this.setState({
-      //   imageUrl: reader.result,
-      // });
     } else {
       setSelectedImg();
     }
   };
 
-  const activeItemIndex = useSelector((state) => state.glassModule.index);
-
   const data = WallModuleData;
+  const { edit } = useSelector((state) => state.sizeModule);
   return (
     <div>
       <ColorPicker
@@ -88,9 +87,7 @@ const WallBar = (props) => {
         onClose={() => setanchorEl()}
         getwallcolor={(e) => handleWallColorChange(e)}
       />
-      {/* {selectedImg && (
-        <img src={selectedImg} style={{ width: "10vw", height: "10vh" }} />
-      )} */}
+
       <input
         accept="image/*"
         className={classes.input}
@@ -121,7 +118,7 @@ const WallBar = (props) => {
                 key={action.name}
                 className={
                   (classes.iconCOntainer,
-                  activeItemIndex === index ? classes.active : null)
+                  edit && index === activeIndex ? classes.active : null)
                 }
                 icon={<Icon className={clsx(classes.icon)} />}
                 tooltipTitle={action.name}

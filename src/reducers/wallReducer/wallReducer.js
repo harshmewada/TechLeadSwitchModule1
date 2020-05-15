@@ -1,6 +1,7 @@
 import { SET_WALL_BACKGROUND } from "./types";
 
 const initialstate = {
+  index: null,
   type: "color",
   wallcolor: "#eee",
 };

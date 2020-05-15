@@ -1,6 +1,7 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { Grid } from "@material-ui/core";
+import RemoveIcon from "@material-ui/icons/Delete";
 import clsx from "clsx";
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -22,11 +23,16 @@ const useStyles = makeStyles((theme) => ({
   halfOpacity: {
     opacity: 0.5,
   },
+  removeContainer: {
+    position: "absolute",
+    top: "-1vh",
+    right: "-1vw",
+  },
 }));
 const BoxContainer = (props) => {
   const { data, active } = props;
   const classes = useStyles();
-  const InnerIcon = data.icon;
+  const InnerIcon = data === 1 ? <div /> : data.icon;
   const { size } = data;
   return (
     <Grid
@@ -47,6 +53,7 @@ const BoxContainer = (props) => {
           // color={active ? "white" : "black"}
         />
       </Grid>
+
       {/* <Grid item>{data.name}</Grid> */}
     </Grid>
   );

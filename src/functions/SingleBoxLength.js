@@ -5,10 +5,17 @@ function SingleBoxLength(BoxLength) {
   if (BoxLength === 2) {
     return 6;
   }
+  if (BoxLength === 3) {
+    return 4;
+  }
   if (BoxLength === 4) {
     return 3;
   }
+
   if (BoxLength === 6) {
+    return 4;
+  }
+  if (BoxLength === 9) {
     return 4;
   } else {
     return 3;

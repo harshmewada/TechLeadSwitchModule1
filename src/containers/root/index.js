@@ -35,7 +35,9 @@ const Root = () => {
           <GlassBar open={selectedSize === 1 ? true : false} />
           <ModuleBar open={selectedSize === 2 ? true : false} />
           <WallBar open={selectedSize === 3 ? true : false} />
-          <Dashboard />
+          <div style={{ height: "90vh", width: "100%" }}>
+            <Dashboard />
+          </div>
         </Grid>
         <Grid item lg={1} className={classes.sidecontainer}>
           <SideGrid />

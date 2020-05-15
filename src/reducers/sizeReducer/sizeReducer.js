@@ -3,11 +3,15 @@ import {
   REMOVE_SIZE,
   PUSH_TO_BOX,
   REMOVE_FROM_BOX,
+  SET_MOVE,
+  SET_EDIT,
 } from "./types";
 
 const initialstate = {
   index: null,
   Boxes: [],
+  size: 0,
+  edit: false,
 };
 
 const sizeReducer = (state = initialstate, action) => {
@@ -16,9 +20,13 @@ const sizeReducer = (state = initialstate, action) => {
       // console.log(action.payload.data.value);
       let NewArray = new Array(action.payload.data.value);
       NewArray.fill(1);
+      console.log(action.payload.data, "size reducer");
       return {
         index: action.payload.index,
         Boxes: NewArray,
+        size: action.payload.data.size,
+        width: action.payload.data.width,
+        maxWidth: action.payload.data.maxWidth,
       };
     case REMOVE_SIZE:
       return {
@@ -35,6 +43,13 @@ const sizeReducer = (state = initialstate, action) => {
         Boxes: BOX,
       };
     case REMOVE_FROM_BOX:
+
+    case SET_EDIT:
+      return {
+        ...state,
+
+        edit: !state.edit,
+      };
     default:
       return state;
   }
