@@ -5,6 +5,7 @@ import {
   SET_MOVE,
   SET_RESIZE,
   SET_EDIT,
+  REMOVE_FROM_BOX,
 } from "../reducers/sizeReducer/types";
 
 export const selectSizeModule = (index, data) => {
@@ -24,6 +25,13 @@ export const pushToBox = (data) => {
   return {
     type: PUSH_TO_BOX,
     payload: { data: data },
+  };
+};
+
+export const removeFromBOx = (index) => {
+  return {
+    type: REMOVE_FROM_BOX,
+    payload: index,
   };
 };
 export const handleEdit = () => {

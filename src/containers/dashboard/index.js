@@ -2,7 +2,7 @@ import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { useSelector } from "react-redux";
 
-import BoxContainer from "./DragContainer";
+import DragContainer from "./DragContainer";
 
 import createImageUrl from "../../functions/createImageUrl";
 import getStyleObj from "../../functions/getStyleObj";
@@ -59,7 +59,7 @@ const Dashboard = () => {
       style={getStyleObj(wallBackground, bgImageType)}
     >
       <div className={classes.contaoiner}>
-        <BoxContainer />
+        <DragContainer />
       </div>
       <div className={classes.switchContainer}>
         <DashSwitch />

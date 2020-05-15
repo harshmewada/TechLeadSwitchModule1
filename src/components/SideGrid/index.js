@@ -45,9 +45,9 @@ const SideGrid = () => {
         : dispatch(ShowSnackBar(true, "error", "Please Select Size First"))
       : dispatch(setModuleActive(index));
   };
-  React.useEffect(() => {
-    console.log(active, "from state");
-  }, [active]);
+  // React.useEffect(() => {
+  //   // console.log(active, "from state");
+  // }, [active]);
   // console.log("active", active);
   return (
     <Grid container className={classes.container} alignItems="stretch">

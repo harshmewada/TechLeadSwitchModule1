@@ -8,7 +8,7 @@ import { useSelector } from "react-redux";
 import { DndProvider } from "react-dnd";
 import Backend from "react-dnd-html5-backend";
 import { Icon } from "@material-ui/core";
-import DragIcon from "@material-ui/icons/MouseOutlined";
+import DragIcon from "@material-ui/icons/PanToolOutlined";
 const useStyles = makeStyles((theme) => ({
   root: {
     // backgroundColor: "red",
@@ -45,8 +45,13 @@ const DragContainer = () => {
     >
       <div>
         <strong
-          className="cursor"
-          style={{ position: "absolute", top: -30, left: -30 }}
+          style={{
+            position: "absolute",
+            top: -30,
+            left: -30,
+            opacity: move ? 1 : 0,
+            color: "grey",
+          }}
         >
           <Icon className="Icon">
             <DragIcon />

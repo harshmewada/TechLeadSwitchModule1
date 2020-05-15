@@ -61,7 +61,8 @@ export default DropTarget(
         const { id: droppedId, originalIndex } = monitor.getItem();
         const didDrop = monitor.didDrop();
         if (!didDrop) {
-          props.moveCard(droppedId, originalIndex);
+          // props.moveCard(droppedId, originalIndex);
+          props.removeCard(droppedId);
         }
       },
     },

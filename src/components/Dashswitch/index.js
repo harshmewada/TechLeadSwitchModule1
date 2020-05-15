@@ -9,6 +9,10 @@ import {
 } from "@material-ui/core";
 import { useDispatch, useSelector } from "react-redux";
 import { toggleSwitchLed, toggleBorder } from "../../actions/dashactions";
+import Modals from "../../components/Modals";
+import { ShowSpecifications } from "../../actions/utilActions";
+import { ShowSnackBar } from "../../actions/snackActions";
+
 const useStyles = makeStyles((theme) => ({
   root: {
     maxWidth: 200,
@@ -21,6 +25,18 @@ const useStyles = makeStyles((theme) => ({
 const DashSwitch = () => {
   const classes = useStyles();
   const dispatch = useDispatch();
+  const size = useSelector((state) => state.sizeModule.Boxes);
+  const color = useSelector((state) => state.glassModule.item);
+
+  const SpecsValidation = () => {
+    const sizeError = size.length === 0 ? true : false;
+
+    const colorError = color === null ? true : false;
+
+    const moduleError = !sizeError && !size.includes(1) ? false : true;
+    // console.log("size", sizeError, "color", colorError, "module", moduleError);
+    return sizeError || colorError || moduleError;
+  };
 
   const switchChange = () => {
     dispatch(toggleSwitchLed());
@@ -28,7 +44,19 @@ const DashSwitch = () => {
   const borderChange = () => {
     dispatch(toggleBorder());
   };
+  const handleSPecs = () => {
+    let validate = SpecsValidation();
 
+    validate === false
+      ? dispatch(ShowSpecifications())
+      : dispatch(
+          ShowSnackBar(
+            true,
+            "error",
+            "Please Complete switch board to see specifications"
+          )
+        );
+  };
   const dashvalues = useSelector((state) => state.dashModule);
   const { led, border } = dashvalues;
   return (
@@ -48,20 +76,14 @@ const DashSwitch = () => {
         </Grid>
 
         <Grid item lg={8}>
-          <Button fullWidth className={classes.btn} variant="contained">
+          <Button
+            fullWidth
+            className={classes.btn}
+            variant="contained"
+            onClick={() => handleSPecs()}
+          >
             Specs
           </Button>
-        </Grid>
-        <Grid item lg={8}>
-          <Paper>
-            <FormControlLabel
-              value={border}
-              control={<Switch color="primary" />}
-              label="Border"
-              labelPlacement="start"
-              onChange={() => borderChange()}
-            />
-          </Paper>
         </Grid>
       </Grid>
     </div>

@@ -11,6 +11,12 @@ import ReloadIcon from "@material-ui/icons/RefreshOutlined";
 import ShareIcon from "@material-ui/icons/ShareOutlined";
 import CallIcon from "@material-ui/icons/CallOutlined";
 import Logo from "../../static/logo.png";
+import { useDispatch } from "react-redux";
+import {
+  ReloadApplication,
+  ShowShare,
+  ShowContact,
+} from "../../actions/utilActions";
 const useStyles = makeStyles((theme) => ({
   AppBar: {
     backgroundColor: theme.palette.primary.main,
@@ -29,6 +35,16 @@ const useStyles = makeStyles((theme) => ({
 }));
 const Header = () => {
   const classes = useStyles();
+  const dispatch = useDispatch();
+  const handleReload = () => {
+    dispatch(ReloadApplication());
+  };
+  const handleShare = () => {
+    dispatch(ShowShare());
+  };
+  const handleContact = () => {
+    dispatch(ShowContact());
+  };
   return (
     <div>
       <AppBar variant="outlined" position="static" className={classes.AppBar}>
@@ -40,17 +56,26 @@ const Header = () => {
             </Grid>
             <Grid item container lg={2} justify="space-evenly">
               <Grid item>
-                <IconButton className={classes.icon}>
+                <IconButton
+                  className={classes.icon}
+                  onClick={() => handleReload()}
+                >
                   <ReloadIcon />
                 </IconButton>
               </Grid>
               <Grid item>
-                <IconButton className={classes.icon}>
+                <IconButton
+                  className={classes.icon}
+                  onClick={() => handleShare()}
+                >
                   <ShareIcon />
                 </IconButton>
               </Grid>
               <Grid item>
-                <IconButton className={classes.icon}>
+                <IconButton
+                  className={classes.icon}
+                  onClick={() => handleContact()}
+                >
                   <CallIcon />
                 </IconButton>
               </Grid>

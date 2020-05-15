@@ -9,6 +9,11 @@ import ModuleBar from "../../components/listbar/moduleBar";
 import Dashboard from "../dashboard";
 import GlassBar from "../../components/listbar/glassBar";
 import WallBar from "../../components/listbar/wallBar";
+import Modals from "../../components/Modals";
+import SpecsModal from "../../components/Modals/SpecsModal";
+import ReloadModal from "../../components/Modals/ReloadModal";
+import ShareModal from "../../components/Modals/ShareModal";
+import ContactModal from "../../components/Modals/ContactModal";
 const useStyles = makeStyles((theme) => ({
   container: {
     height: "90.7vh",
@@ -25,6 +30,10 @@ const useStyles = makeStyles((theme) => ({
 const Root = () => {
   const classes = useStyles();
   const selectedSize = useSelector((state) => state.activeModule.index);
+  const specs = useSelector((state) => state.utilModule.specs);
+  const reload = useSelector((state) => state.utilModule.reload);
+  const share = useSelector((state) => state.utilModule.share);
+  const contact = useSelector((state) => state.utilModule.contact);
 
   return (
     <div>
@@ -42,6 +51,10 @@ const Root = () => {
         <Grid item lg={1} className={classes.sidecontainer}>
           <SideGrid />
         </Grid>
+        {specs && <SpecsModal open={false} title="Switch Specification" />}
+        {reload && <ReloadModal />}
+        {share && <ShareModal />}
+        {contact && <ContactModal />}
       </Grid>
     </div>
   );

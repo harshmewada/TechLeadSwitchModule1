@@ -20,6 +20,8 @@ const moduleReducer = (state = initialstate, action) => {
         type: "",
         message: "",
       };
+    case "RESET":
+      return initialstate;
     default:
       return state;
   }

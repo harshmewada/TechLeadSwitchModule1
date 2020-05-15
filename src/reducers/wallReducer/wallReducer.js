@@ -13,7 +13,8 @@ const GlassSELECT_GLASSReducer = (state = initialstate, action) => {
         ...state,
         ...action.payload,
       };
-
+    case "RESET":
+      return initialstate;
     default:
       return state;
   }

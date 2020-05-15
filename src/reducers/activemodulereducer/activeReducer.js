@@ -14,6 +14,9 @@ const activeReducer = (state = initialstate, action) => {
       return {
         index: null,
       };
+
+    case "RESET":
+      return initialstate;
     default:
       return state;
   }

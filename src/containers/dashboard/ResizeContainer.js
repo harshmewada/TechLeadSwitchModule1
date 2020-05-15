@@ -4,11 +4,12 @@ import { Paper, Grid, Button, IconButton } from "@material-ui/core";
 import DragIcon from "@material-ui/icons/ZoomOutMapOutlined";
 import GridContainer from "./GridContainer";
 import { useSelector, useDispatch } from "react-redux";
-import Card from "./Card";
+
 import { ShowSnackBar } from "../../actions/snackActions";
 import { DropTarget } from "react-dnd";
 import update from "immutability-helper";
 import ItemTypes from "./ItemTypes";
+import { removeFromBOx } from "../../actions/sizeaction";
 const useStyles = makeStyles((theme) => ({
   box: {
     backgroundColor: "red",
@@ -68,7 +69,8 @@ const ResizeCOntainer = (props) => {
   const [cards, setCards] = React.useState([]);
   React.useEffect(() => {
     setCards(Boxes);
-  }, [Boxes]);
+    // console.log("Boxes effect", Boxes);
+  }, [SizeData]);
 
   //fintBox
 
@@ -96,6 +98,17 @@ const ResizeCOntainer = (props) => {
         card,
         index: cards.indexOf(card),
       };
+    },
+    [cards]
+  );
+
+  const removeCard = useCallback(
+    (id) => {
+      const { card, index } = findCard(id);
+      dispatch(removeFromBOx(index));
+      // let newCards = cards;
+      // newCards[index] = 1;
+      // setCards(newCards);
     },
     [cards]
   );
@@ -137,6 +150,7 @@ const ResizeCOntainer = (props) => {
                 sizes={state}
                 moveCard={moveCard}
                 findCard={findCard}
+                removeCard={removeCard}
               />
             );
           })}

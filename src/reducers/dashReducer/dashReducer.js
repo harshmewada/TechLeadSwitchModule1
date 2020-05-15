@@ -17,6 +17,8 @@ const moduleReducer = (state = initialstate, action) => {
         ...state,
         border: !state.border,
       };
+    case "RESET":
+      return initialstate;
     default:
       return state;
   }
