@@ -12,7 +12,7 @@ import Rj45 from "../static/Icons/module/Rj45";
 import Tvsocket from "../static/Icons/module/Tvsocket";
 import Usb from "../static/Icons/module/Usb";
 import Wallsocket from "../static/Icons/module/Wallsocket";
-
+import uuid from "uuid/dist/v4";
 const ModuleData = [
   {
     index: 0,

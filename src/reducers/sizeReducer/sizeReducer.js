@@ -6,6 +6,7 @@ import {
   SET_MOVE,
   SET_EDIT,
 } from "./types";
+import uuid from "uuid/dist/v4";
 
 const initialstate = {
   index: null,
@@ -37,7 +38,7 @@ const sizeReducer = (state = initialstate, action) => {
     case PUSH_TO_BOX:
       let BOX = state.Boxes;
       let ITEMINDEX = BOX.indexOf(1);
-      BOX[ITEMINDEX] = action.payload.data;
+      BOX[ITEMINDEX] = { ...action.payload.data, id: uuid() };
 
       return {
         ...state,

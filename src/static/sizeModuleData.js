@@ -5,10 +5,11 @@ import Sizesix from "../static/Icons/size/Sizefour.js";
 // import Sizesix from "../static/Icons/size/Sizesix.js";
 import Sizeeight from "../static/Icons/size/Sizeeight.js";
 import Sizetwelve from "../static/Icons/size/Sizetwelve.js";
-
+import uuid from "uuid/dist/v4";
 const SizeModuleData = [
   {
     index: 0,
+    id: uuid(),
     name: "Module 2",
     icon: Sizetwo,
     value: 1,
@@ -18,6 +19,7 @@ const SizeModuleData = [
   },
   {
     index: 1,
+    id: uuid(),
     name: "Module 4",
     icon: Sizefour,
     value: 2,
@@ -27,6 +29,7 @@ const SizeModuleData = [
   },
   {
     index: 2,
+    id: uuid(),
     name: "Module 6",
     icon: Sizesix,
     value: 3,
@@ -36,6 +39,7 @@ const SizeModuleData = [
   },
   {
     index: 3,
+    id: uuid(),
     name: "Module 12",
     icon: Sizesix,
     value: 6,
@@ -51,6 +55,7 @@ const SizeModuleData = [
   // },
   {
     index: 5,
+    id: uuid(),
     name: "Module 18",
     icon: Sizetwelve,
     value: 9,

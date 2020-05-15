@@ -69,7 +69,7 @@ const ResizeCOntainer = (props) => {
   const [cards, setCards] = React.useState([]);
   React.useEffect(() => {
     setCards(Boxes);
-    // console.log("Boxes effect", Boxes);
+    console.log("Boxes effect", Boxes);
   }, [SizeData]);
 
   //fintBox
@@ -92,7 +92,7 @@ const ResizeCOntainer = (props) => {
 
   const findCard = useCallback(
     (id) => {
-      const card = cards.filter((c) => `${c.index}` === id)[0];
+      const card = cards.filter((c) => `${c.id}` === id)[0];
 
       return {
         card,
@@ -144,7 +144,7 @@ const ResizeCOntainer = (props) => {
               // />
               <GridContainer
                 key={index}
-                id={`${card.index}`}
+                id={`${card.id}`}
                 data={card}
                 led={led}
                 sizes={state}
