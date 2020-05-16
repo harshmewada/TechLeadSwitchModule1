@@ -22,6 +22,9 @@ import MobileDrawer from "./MobileDrawer";
 const useStyles = makeStyles((theme) => ({
   AppBar: {
     backgroundColor: theme.palette.primary.main,
+    [theme.breakpoints.down("sm")]: {
+      zIndex: theme.zIndex.appBar + 1,
+    },
   },
   logo: {
     height: "5vh",
@@ -95,7 +98,11 @@ const Header = () => {
                 justify="flex-end"
                 alignItems="center"
               >
-                <MobileDrawer />
+                <MobileDrawer
+                  handleReload={() => handleReload()}
+                  handleContact={() => handleContact()}
+                  handleShare={() => handleShare()}
+                />
               </Grid>
             </Hidden>
           </Grid>

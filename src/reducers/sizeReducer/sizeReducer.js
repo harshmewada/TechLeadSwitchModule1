@@ -33,10 +33,7 @@ const sizeReducer = (state = initialstate, action) => {
       return {
         index: action.payload.index,
         Boxes: NewArray,
-        size: action.payload.data.size,
-        width: action.payload.data.width,
-        maxWidth: action.payload.data.maxWidth,
-        name: action.payload.data.name,
+        ...action.payload.data,
       };
     case REMOVE_SIZE:
       return {

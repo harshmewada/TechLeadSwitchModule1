@@ -8,7 +8,7 @@ import { ShowSpecifications } from "../../actions/utilActions";
 const GridItem = (props) => {
   const { name, value } = props;
   return (
-    <Grid item lg={6}>
+    <Grid item lg={6} md={6} sm={12} xs={12}>
       <Typography variant="caption">{name}</Typography>
       <Typography variant="h6">{value}</Typography>
     </Grid>
@@ -22,11 +22,13 @@ const SpecsModal = (props) => {
   const sizeModuel = useSelector((state) => state.sizeModule);
   const sizeName = sizeModuel.name;
 
+  const dimension = sizeModuel.boardSize;
+
   const color = useSelector((state) => state.glassModule.item);
   let type = "";
   let { Boxes } = sizeModuel;
 
-  Boxes.map((data) => (type = type + " " + data.name));
+  Boxes.map((data) => (type = type + ", " + data.name));
 
   const open = useSelector((state) => state.utilModule.specs);
   return (
@@ -38,7 +40,7 @@ const SpecsModal = (props) => {
       <Grid container spacing={1}>
         <GridItem name="Size" value={sizeName} />
         <GridItem name="Color" value={color.value} />
-        <GridItem name="Dimension" value={null} />
+        <GridItem name="Dimension" value={dimension} />
         <GridItem name="Type" value={type} />
         <GridItem name="Led Color" value="blue" />
       </Grid>

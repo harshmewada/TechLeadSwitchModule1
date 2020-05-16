@@ -8,6 +8,7 @@ import createImageUrl from "../../functions/createImageUrl";
 import getStyleObj from "../../functions/getStyleObj";
 import DashSwitch from "../../components/Dashswitch";
 import SnackBar from "../../components/Snackbars/index";
+import { Hidden } from "@material-ui/core";
 
 const Dashboard = () => {
   let GlassData = useSelector((state) => state.glassModule);
@@ -44,6 +45,12 @@ const Dashboard = () => {
       paddingTop: "10vh",
       // paddingLeft: "3vw",
       paddingBottom: "10vh",
+      // backgroundColor: "red",
+      // border: "2px solid green",
+      [theme.breakpoints.down("md")]: {
+        padding: 0,
+        maxHeight: "70vh",
+      },
     },
     switchContainer: {
       position: "absolute",
@@ -61,9 +68,11 @@ const Dashboard = () => {
       <div className={classes.contaoiner}>
         <DragContainer />
       </div>
-      <div className={classes.switchContainer}>
-        <DashSwitch />
-      </div>
+      <Hidden smDown>
+        <div className={classes.switchContainer}>
+          <DashSwitch />
+        </div>
+      </Hidden>
       {snackActive && <SnackBar />}
     </div>
   );

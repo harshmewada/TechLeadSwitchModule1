@@ -14,6 +14,10 @@ const useStyles = makeStyles((theme) => ({
     height: "100%",
     // backgroundColor: "red",
     backgroundColor: theme.palette.grey[100],
+    [theme.breakpoints.down("sm")]: {
+      // backgroundColor: "red",
+      height: "auto",
+    },
   },
   item: {
     backgroundColor: theme.palette.background.paper,
@@ -60,6 +64,9 @@ const SideGrid = () => {
               key={index}
               component={Button}
               lg={12}
+              md={12}
+              sm={3}
+              xs={3}
               className={active === index ? classes.item : null}
               onClick={() => handleModuleActivation(index)}
             >

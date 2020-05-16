@@ -27,6 +27,10 @@ const useStyles = makeStyles((theme) => ({
     // fontSize: "2rem",
     height: "4vh",
     width: "4vw",
+    [theme.breakpoints.down("md")]: {
+      width: "7vh",
+      height: "7vh",
+    },
     // border: "1px dashed black",
   },
   halfIcon: {
@@ -37,6 +41,10 @@ const useStyles = makeStyles((theme) => ({
     // // paddingBottom: "2.3vh",
     height: "2.7vh",
     width: "2.7vw",
+    [theme.breakpoints.down("md")]: {
+      width: "7vh",
+      height: "7vh",
+    },
   },
   normalColor: {
     color: theme.palette.text.secondary,
@@ -73,7 +81,16 @@ const ListBarItem = (props) => {
       component={Button}
       onClick={() => props.onClick()}
     >
-      <Grid item lg={5} container alignItems="center" justify="center">
+      <Grid
+        item
+        lg={5}
+        md={5}
+        sm={3}
+        xs={3}
+        container
+        alignItems="center"
+        justify="center"
+      >
         <InnerIcon
           className={clsx(
             index < 2 ? classes.halfIcon : classes.icon,

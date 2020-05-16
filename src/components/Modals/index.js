@@ -19,6 +19,10 @@ const useStyles = makeStyles((theme) => ({
   },
   card: {
     minWidth: "30vw",
+    [theme.breakpoints.down("md")]: {
+      width: "auto",
+      margin: "0 10px",
+    },
   },
 }));
 const Modals = (props) => {

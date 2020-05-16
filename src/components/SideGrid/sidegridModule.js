@@ -1,10 +1,13 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import { Grid, Typography, Divider } from "@material-ui/core";
+import { Grid, Typography, Divider, Hidden } from "@material-ui/core";
 import clsx from "clsx";
 const useStyles = makeStyles((theme) => ({
   container: {
     padding: theme.spacing(2),
+    [theme.breakpoints.down("md")]: {
+      // padding:0
+    },
   },
   icon: {
     // height: "7vh",
@@ -48,11 +51,13 @@ const SideGridModule = ({ data, active }) => {
           {data.name}
         </Typography>
       </Grid>
-      <Grid item lg={8}>
-        <Divider
-          className={clsx(classes.item, active ? classes.activeItem : null)}
-        />
-      </Grid>
+      <Hidden smDown>
+        <Grid item lg={8}>
+          <Divider
+            className={clsx(classes.item, active ? classes.activeItem : null)}
+          />
+        </Grid>
+      </Hidden>
     </Grid>
   );
 };

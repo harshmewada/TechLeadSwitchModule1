@@ -7,6 +7,9 @@ import {
   MenuList,
   MenuItem,
   Button,
+  Hidden,
+  Drawer,
+  SwipeableDrawer,
 } from "@material-ui/core";
 
 import ListBarItem from "./listbarItem";
@@ -32,6 +35,9 @@ const useStyles = makeStyles((theme) => ({
     overflowY: "auto",
     // backgroundColor: "red",
     minWidth: 280,
+    [theme.breakpoints.down("sm")]: {
+      height: "100%",
+    },
   },
   nopaper: {
     position: "absolute",
@@ -57,6 +63,9 @@ const useStyles = makeStyles((theme) => ({
   },
   wallMargin: {
     marginTop: 400,
+  },
+  mobileDrawer: {
+    width: 200,
   },
 }));
 const ListBar = (props) => {
@@ -104,26 +113,48 @@ const ListBar = (props) => {
   // }, [open]);
 
   return (
-    <div
-      className={clsx(
-        noPaper ? classes.nopaper : classes.paper,
-        props.index === 1
-          ? classes.glassMargin
-          : props.index === 3
-          ? classes.wallMargin
-          : null
-      )}
-    >
-      <Slide direction="left" in={open} mountOnEnter unmountOnExit>
-        <Paper
-          elevation={0}
-          className={noPaper ? classes.noPaper : classes.Paper}
+    <div>
+      <Hidden smDown>
+        <div
+          className={clsx(
+            noPaper ? classes.nopaper : classes.paper,
+            props.index === 1
+              ? classes.glassMargin
+              : props.index === 3
+              ? classes.wallMargin
+              : null
+          )}
         >
-          <ClickAwayListener onClickAway={handleClose}>
+          <Slide direction="left" in={open} mountOnEnter unmountOnExit>
+            <Paper
+              elevation={0}
+              className={noPaper ? classes.noPaper : classes.Paper}
+            >
+              <ClickAwayListener onClickAway={handleClose}>
+                {props.children}
+              </ClickAwayListener>
+            </Paper>
+          </Slide>
+        </div>
+      </Hidden>
+      <Hidden mdUp>
+        <Drawer
+          onOpen={() => console.log("mobile sizebar open")}
+          anchor="right"
+          open={open}
+          onClose={() => {
+            handleClose();
+          }}
+          className={classes.mobileDrawer}
+        >
+          <Paper
+            elevation={0}
+            className={noPaper ? classes.noPaper : classes.Paper}
+          >
             {props.children}
-          </ClickAwayListener>
-        </Paper>
-      </Slide>
+          </Paper>
+        </Drawer>
+      </Hidden>
     </div>
   );
 };

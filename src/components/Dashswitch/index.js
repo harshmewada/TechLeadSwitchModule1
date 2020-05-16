@@ -12,7 +12,15 @@ import { toggleSwitchLed, toggleBorder } from "../../actions/dashactions";
 import Modals from "../../components/Modals";
 import { ShowSpecifications } from "../../actions/utilActions";
 import { ShowSnackBar } from "../../actions/snackActions";
+import EmptyIcon from "../../static/Icons/module/EmptyModule";
 
+const emptydata = {
+  index: null,
+  name: null,
+  icon: EmptyIcon,
+  mainIcon: EmptyIcon,
+  size: "normal",
+};
 const useStyles = makeStyles((theme) => ({
   root: {
     maxWidth: 200,
@@ -33,7 +41,11 @@ const DashSwitch = () => {
 
     const colorError = color === null ? true : false;
 
-    const moduleError = !sizeError && !size.includes(1) ? false : true;
+    // const moduleError = !sizeError && !size.includes(emptydata) ? false : true;
+    const moduleError =
+      !sizeError && size.filter((data) => data.index === null).length === 0
+        ? false
+        : true;
     // console.log("size", sizeError, "color", colorError, "module", moduleError);
     return sizeError || colorError || moduleError;
   };
@@ -62,7 +74,7 @@ const DashSwitch = () => {
   return (
     <div className={classes.root}>
       <Grid container className={classes.container} spacing={2}>
-        <Grid item lg={8} justify="center">
+        <Grid item lg={8}>
           <Paper>
             <FormControlLabel
               value={led}

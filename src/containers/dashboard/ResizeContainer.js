@@ -1,6 +1,13 @@
 import React, { useCallback } from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import { Paper, Grid, Button, IconButton, Tooltip } from "@material-ui/core";
+import {
+  Paper,
+  Grid,
+  Button,
+  IconButton,
+  Tooltip,
+  Hidden,
+} from "@material-ui/core";
 import DragIcon from "@material-ui/icons/ZoomOutMapOutlined";
 import GridContainer from "./GridContainer";
 import { useSelector, useDispatch } from "react-redux";
@@ -12,7 +19,7 @@ import ItemTypes from "./ItemTypes";
 import { removeFromBOx } from "../../actions/sizeaction";
 const useStyles = makeStyles((theme) => ({
   box: {
-    backgroundColor: "red",
+    // backgroundColor: "red",
   },
   gridContainer: {
     // marginTop: "-25vh",
@@ -33,13 +40,13 @@ const ResizeCOntainer = (props) => {
   const ref = React.useRef(null);
   const { edit, connectDropTarget } = props;
   const classes = useStyles();
-
+  const windowWidth = window.innerWidth;
   let GlassData = useSelector((state) => state.glassModule);
   let defaultGlass = GlassData.item;
   let defaultBg = "#eee";
 
   const SizeData = useSelector((state) => state.sizeModule);
-  const { Boxes, size, width, maxWidth } = SizeData;
+  const { Boxes, size, width, maxWidth, mobileWidth } = SizeData;
   let BoxLength = Boxes.length;
 
   const [state, setState] = React.useState();
@@ -49,7 +56,7 @@ const ResizeCOntainer = (props) => {
 
   React.useEffect(() => {
     // setGridSize(size);
-    setState(width);
+    windowWidth < 800 ? setState(mobileWidth) : setState(width);
   }, [width, size]);
 
   const wheelResize = (e) => {
@@ -155,15 +162,17 @@ const ResizeCOntainer = (props) => {
             );
           })}
       </Grid>
-      <div className={classes.resizeBtnCOntainer}>
-        {edit && (
-          <div draggable>
-            <Tooltip title="Scroll on The Board to Resize">
-              <DragIcon className={classes.resizeBtn} />
-            </Tooltip>
-          </div>
-        )}
-      </div>
+      <Hidden smDown>
+        <div className={classes.resizeBtnCOntainer}>
+          {edit && (
+            <div draggable>
+              <Tooltip title="Scroll on The Board to Resize">
+                <DragIcon className={classes.resizeBtn} />
+              </Tooltip>
+            </div>
+          )}
+        </div>
+      </Hidden>
     </div>
   );
 };

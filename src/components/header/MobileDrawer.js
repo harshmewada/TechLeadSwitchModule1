@@ -13,8 +13,18 @@ import MenuIcon from "@material-ui/icons/Menu";
 import ReloadIcon from "@material-ui/icons/RefreshOutlined";
 import ShareIcon from "@material-ui/icons/ShareOutlined";
 import CallIcon from "@material-ui/icons/CallOutlined";
-import { IconButton } from "@material-ui/core";
-
+import {
+  IconButton,
+  ListItemAvatar,
+  Switch,
+  ListItemSecondaryAction,
+} from "@material-ui/core";
+import { ShowSpecifications } from "../../actions/utilActions";
+import { ShowSnackBar } from "../../actions/snackActions";
+import EmptyIcon from "../../static/Icons/module/EmptyModule";
+import { useDispatch, useSelector } from "react-redux";
+import { toggleSwitchLed, toggleBorder } from "../../actions/dashactions";
+import SpecsIcon from "@material-ui/icons/Dashboard";
 const useStyles = makeStyles({
   list: {
     width: 250,
@@ -30,40 +40,113 @@ const useStyles = makeStyles({
 export default function MobileDrawer(props) {
   const classes = useStyles();
   const [state, setState] = React.useState(false);
-  const { handleReload } = props;
+  const { handleReload, handleShare, handleContact } = props;
 
   const toggleDrawer = (event) => {
     setState(!state);
   };
+  const dispatch = useDispatch();
+  const size = useSelector((state) => state.sizeModule.Boxes);
+  const color = useSelector((state) => state.glassModule.item);
+
+  const SpecsValidation = () => {
+    const sizeError = size.length === 0 ? true : false;
+
+    const colorError = color === null ? true : false;
+
+    // const moduleError = !sizeError && !size.includes(emptydata) ? false : true;
+    const moduleError =
+      !sizeError && size.filter((data) => data.index === null).length === 0
+        ? false
+        : true;
+    // console.log("size", sizeError, "color", colorError, "module", moduleError);
+    return sizeError || colorError || moduleError;
+  };
+
+  const switchChange = () => {
+    dispatch(toggleSwitchLed());
+  };
+  const borderChange = () => {
+    dispatch(toggleBorder());
+  };
+  const handleSPecs = () => {
+    let validate = SpecsValidation();
+
+    validate === false
+      ? dispatch(ShowSpecifications())
+      : dispatch(
+          ShowSnackBar(
+            true,
+            "error",
+            "Please Complete switch board to see specifications"
+          )
+        );
+  };
+  const dashvalues = useSelector((state) => state.dashModule);
+  const { led, border } = dashvalues;
 
   const list = () => {
     return (
-      <div
-        className={clsx(classes.list)}
-        role="presentation"
-        onClick={(e) => toggleDrawer()}
-        onKeyDown={(e) => toggleDrawer()}
-      >
+      <div className={clsx(classes.list)} role="presentation">
         <List>
-          <ListItem button onClick={() => handleReload()}>
+          <ListItem
+            button
+            onClick={() => {
+              handleReload();
+              toggleDrawer();
+            }}
+          >
             <ListItemIcon>
               <ReloadIcon />
             </ListItemIcon>
             <ListItemText primary="Reset Module" />
           </ListItem>
           <Divider />
-          <ListItem button onClick={() => handleReload()}>
+          <ListItem
+            button
+            onClick={() => {
+              toggleDrawer();
+              handleShare();
+            }}
+          >
             <ListItemIcon>
               <ShareIcon />
             </ListItemIcon>
-            <ListItemText primary="Share Module" />
+            <ListItemText primary="Share" />
           </ListItem>
           <Divider />
-          <ListItem button onClick={() => handleReload()}>
+          <ListItem
+            button
+            onClick={() => {
+              toggleDrawer();
+              handleContact();
+            }}
+          >
             <ListItemIcon>
               <CallIcon />
             </ListItemIcon>
             <ListItemText primary="Contact us" />
+          </ListItem>
+          <Divider />
+
+          <ListItem
+            button
+            onClick={() => {
+              toggleDrawer();
+              handleSPecs();
+            }}
+          >
+            <ListItemIcon>
+              <SpecsIcon />
+            </ListItemIcon>
+            <ListItemText primary="Show Spces" />
+          </ListItem>
+          <Divider />
+          <ListItem button onClick={() => switchChange()}>
+            <ListItemSecondaryAction>
+              <Switch color="primary" value={led} />
+            </ListItemSecondaryAction>
+            <ListItemText primary="LED Active" />
           </ListItem>
           <Divider />
         </List>

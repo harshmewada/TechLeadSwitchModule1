@@ -1,10 +1,12 @@
 const getStyleObj = (wallBackground, bgImageType) => {
+  const mobileWidth = window.innerWidth;
   let styleObj =
     bgImageType === "color"
       ? { background: wallBackground }
       : {
           backgroundImage: wallBackground,
-          backgroundSize: "80%",
+          backgroundSize: mobileWidth < 800 ? "100%" : "80%",
+
           backgroundPosition: "center",
 
           backgroundRepeat: "no-repeat",
