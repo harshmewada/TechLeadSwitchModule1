@@ -6,25 +6,32 @@ import * as serviceWorker from "./serviceWorker";
 import { Provider } from "react-redux";
 import { createStore } from "redux";
 import rootReducer from "./reducers/rootReducer";
-import { StylesProvider, jssPreset } from "@material-ui/core/styles";
+import {
+  StylesProvider,
+  jssPreset,
+  createGenerateClassName,
+} from "@material-ui/core/styles";
 import { create } from "jss";
+import { JssProvider } from "react-jss";
+
+const generateClassName = createGenerateClassName();
 const store = createStore(
   rootReducer,
   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 );
-const jss = create({
-  ...jssPreset(),
-  // Define a custom insertion point that JSS will look for when injecting the styles into the DOM.
-  insertionPoint: "jss-insertion-point",
-});
+// const jss = create({
+//   ...jssPreset(),
+//   // Define a custom insertion point that JSS will look for when injecting the styles into the DOM.
+//   insertionPoint: "jss-insertion-point",
+// });
 ReactDOM.render(
-  <StylesProvider jss={jss}>
+  <JssProvider generateClassName={generateClassName} classNamePrefix="app-1">
     <React.StrictMode>
       <Provider store={store}>
         <App />
       </Provider>
     </React.StrictMode>
-  </StylesProvider>,
+  </JssProvider>,
   document.getElementById("root")
 );
 
