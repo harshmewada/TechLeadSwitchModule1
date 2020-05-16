@@ -59,10 +59,10 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: "transparent",
   },
   glassMargin: {
-    marginTop: 180,
+    marginTop: "25vh",
   },
   wallMargin: {
-    marginTop: 400,
+    marginTop: "58vh",
   },
   mobileDrawer: {
     width: 200,
