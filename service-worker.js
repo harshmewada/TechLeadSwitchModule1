@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/TechLeadSwitchModule1/precache-manifest.24a88a4956d9c50fccb71cab07e397ef.js"
+  "/TechLeadSwitchModule1/precache-manifest.4f056c04c974e25f00f78b1dbe647dcc.js"
 );
 
 self.addEventListener('message', (event) => {
