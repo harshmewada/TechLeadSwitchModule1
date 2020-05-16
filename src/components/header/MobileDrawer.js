@@ -139,7 +139,7 @@ export default function MobileDrawer(props) {
             <ListItemIcon>
               <SpecsIcon />
             </ListItemIcon>
-            <ListItemText primary="Show Spces" />
+            <ListItemText primary="Show Specs" />
           </ListItem>
           <Divider />
           <ListItem button onClick={() => switchChange()}>
