@@ -7,6 +7,7 @@ import {
   SET_EDIT,
 } from "./types";
 import uuid from "uuid/dist/v4";
+import EmptyIcon from "../../static/Icons/module/EmptyModule";
 
 const initialstate = {
   index: null,
@@ -15,12 +16,19 @@ const initialstate = {
   edit: false,
 };
 
+const emptydata = {
+  index: null,
+  name: null,
+  icon: EmptyIcon,
+  mainIcon: EmptyIcon,
+  size: "normal",
+};
 const sizeReducer = (state = initialstate, action) => {
   switch (action.type) {
     case SELECT_SIZE:
       // console.log(action.payload.data.value);
       let NewArray = new Array(action.payload.data.value);
-      NewArray.fill(1);
+      NewArray.fill(emptydata);
       // console.log(action.payload.data, "size reducer");
       return {
         index: action.payload.index,
@@ -37,7 +45,7 @@ const sizeReducer = (state = initialstate, action) => {
 
     case PUSH_TO_BOX:
       let BOX = state.Boxes;
-      let ITEMINDEX = BOX.indexOf(1);
+      let ITEMINDEX = BOX.indexOf(emptydata);
       BOX[ITEMINDEX] = { ...action.payload.data, id: uuid() };
 
       return {

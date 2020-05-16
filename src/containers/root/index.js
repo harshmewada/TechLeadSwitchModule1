@@ -16,10 +16,10 @@ import ShareModal from "../../components/Modals/ShareModal";
 import ContactModal from "../../components/Modals/ContactModal";
 const useStyles = makeStyles((theme) => ({
   container: {
-    height: "90.7vh",
+    height: "100vh",
   },
   sidecontainer: {
-    height: "90.7vh",
+    height: "100%",
 
     zIndex: 100,
   },
@@ -39,16 +39,31 @@ const Root = () => {
     <div>
       <Header />
       <Grid container className={classes.container}>
-        <Grid item lg={11} className={classes.dashContainer} id="dashContainer">
+        <Grid
+          item
+          lg={11}
+          md={11}
+          sm={11}
+          xs={12}
+          className={classes.dashContainer}
+          id="dashContainer"
+        >
           <Sizebar open={selectedSize === 0 ? true : false} />
           <GlassBar open={selectedSize === 1 ? true : false} />
           <ModuleBar open={selectedSize === 2 ? true : false} />
           <WallBar open={selectedSize === 3 ? true : false} />
-          <div style={{ height: "90vh", width: "100%" }}>
+          <div style={{ height: "100%", width: "100%" }}>
             <Dashboard />
           </div>
         </Grid>
-        <Grid item lg={1} className={classes.sidecontainer}>
+        <Grid
+          item
+          lg={1}
+          md={1}
+          sm={1}
+          xs={12}
+          className={classes.sidecontainer}
+        >
           <SideGrid />
         </Grid>
         {specs && <SpecsModal open={false} title="Switch Specification" />}

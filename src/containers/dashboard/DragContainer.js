@@ -7,7 +7,7 @@ import ResizeContainer from "./ResizeContainer";
 import { useSelector } from "react-redux";
 import { DndProvider } from "react-dnd";
 import Backend from "react-dnd-html5-backend";
-import { Icon } from "@material-ui/core";
+import { Icon, Tooltip, IconButton } from "@material-ui/core";
 import DragIcon from "@material-ui/icons/PanToolOutlined";
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -31,7 +31,8 @@ const DragContainer = () => {
     // this.setState({ activeDrags: --this.state.activeDrags });
   };
   const dragHandlers = { onStart: onStart, onStop: onStop };
-
+  const [tooltipopen, setTooltipopen] = React.useState(false);
+  const [tooltiphover, setTooltiphover] = React.useState(true);
   return (
     <Draggable
       bounds="parent"
@@ -44,19 +45,33 @@ const DragContainer = () => {
       // {...dragHandlers}
     >
       <div>
-        <strong
-          style={{
-            position: "absolute",
-            top: -30,
-            left: -30,
-            opacity: move ? 1 : 0,
-            color: "grey",
-          }}
+        <Tooltip
+          open={tooltiphover && tooltipopen}
+          title="Click and Drag here to move the board"
+          disableFocusListener
+          disableHoverListener
+          disableTouchListener
         >
-          <Icon className="Icon">
-            <DragIcon />
-          </Icon>
-        </strong>
+          <strong
+            style={{
+              position: "absolute",
+              top: -30,
+              left: -30,
+              opacity: move ? 1 : 0,
+              color: "grey",
+            }}
+          >
+            <IconButton
+              onMouseEnter={() => setTooltipopen(true)}
+              onMouseLeave={() => setTooltipopen(false)}
+              onClick={() => setTooltiphover(false)}
+            >
+              <Icon className="Icon">
+                <DragIcon />
+              </Icon>
+            </IconButton>
+          </strong>
+        </Tooltip>
 
         <DndProvider backend={Backend}>
           <ResizeContainer edit={move} />

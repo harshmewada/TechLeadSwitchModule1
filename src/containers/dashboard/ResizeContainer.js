@@ -1,6 +1,6 @@
 import React, { useCallback } from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import { Paper, Grid, Button, IconButton } from "@material-ui/core";
+import { Paper, Grid, Button, IconButton, Tooltip } from "@material-ui/core";
 import DragIcon from "@material-ui/icons/ZoomOutMapOutlined";
 import GridContainer from "./GridContainer";
 import { useSelector, useDispatch } from "react-redux";
@@ -60,7 +60,7 @@ const ResizeCOntainer = (props) => {
       }
       if (variable > maxWidth) {
         if (snackactive !== true) {
-          dispatch(ShowSnackBar(true, "error", "Max Width Reached"));
+          dispatch(ShowSnackBar(true, "error", "Max Size"));
         }
       }
     }
@@ -106,9 +106,9 @@ const ResizeCOntainer = (props) => {
     (id) => {
       const { card, index } = findCard(id);
       dispatch(removeFromBOx(index));
-      // let newCards = cards;
-      // newCards[index] = 1;
-      // setCards(newCards);
+      let newCards = cards;
+      newCards[index] = 1;
+      setCards(newCards);
     },
     [cards]
   );
@@ -156,7 +156,13 @@ const ResizeCOntainer = (props) => {
           })}
       </Grid>
       <div className={classes.resizeBtnCOntainer}>
-        {edit && <DragIcon className={classes.resizeBtn} />}
+        {edit && (
+          <div draggable>
+            <Tooltip title="Scroll on The Board to Resize">
+              <DragIcon className={classes.resizeBtn} />
+            </Tooltip>
+          </div>
+        )}
       </div>
     </div>
   );

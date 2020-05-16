@@ -8,6 +8,8 @@ import { selectModule } from "../../actions/moduleaction";
 import { useDispatch, useSelector } from "react-redux";
 import { pushToBox } from "../../actions/sizeaction";
 import { ShowSnackBar } from "../../actions/snackActions";
+import EmptyIcon from "../../static/Icons/module/EmptyModule";
+
 const useStyles = makeStyles((theme) => ({}));
 const ModuleBar = (props) => {
   const classes = useStyles();
@@ -24,11 +26,24 @@ const ModuleBar = (props) => {
 
   const Boxes = useSelector((state) => state.sizeModule.Boxes);
   const BoxesLenght = Boxes.length;
-
+  const emptydata = {
+    index: null,
+    name: null,
+    icon: EmptyIcon,
+    mainIcon: EmptyIcon,
+    size: "normal",
+  };
   const handleClick = (index, data) => {
     dipatch(selectModule(index));
     // dipatch(pushToBox(data));
-    if (Boxes.includes(1) === true) {
+    const findIndex = Boxes.filter((data) => data.index === !emptydata.index);
+    console.log(
+      "if loop moduleBar",
+      Boxes.includes(emptydata),
+      "\n",
+      findIndex
+    );
+    if (findIndex.length === 0) {
       dipatch(pushToBox(data));
       setBarDisabled(false);
     } else {

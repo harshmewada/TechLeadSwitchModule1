@@ -1,16 +1,20 @@
 import Switch1 from "../static/Icons/module/Switch1";
 import Switch2 from "../static/Icons/module/Switch2";
 import Switch4 from "../static/Icons/module/Switch4";
-import Closecurtain from "../static/Icons/module/Closecurtain";
-import Opencurtain from "../static/Icons/module/Opencurtain";
+// import Closecurtain from "../static/Icons/module/Closecurtain";
+// import Opencurtain from "../static/Icons/module/Opencurtain";
+import Curtain from "../static/Icons/module/redefined/Curtain";
 import Doorbell from "../static/Icons/module/Doorbell";
-import Fan from "../static/Icons/module/Fan";
+import Fan from "../static/Icons/module/redefined/Fan";
 import Fanragulator from "../static/Icons/module/Fanragulator";
 import Flashlight from "../static/Icons/module/Flashlight";
 import Noname from "../static/Icons/module/Noname";
-import Rj45 from "../static/Icons/module/Rj45";
-import Tvsocket from "../static/Icons/module/Tvsocket";
-import Usb from "../static/Icons/module/Usb";
+// import Rj45 from "../static/Icons/module/Rj45";
+import Rj45 from "../static/Icons/module/redefined/Rj45";
+// import Tvsocket from "../static/Icons/module/Tvsocket";
+// import Usb from "../static/Icons/module/Usb";
+import Tvsocket from "../static/Icons/module/redefined/Tvsocket";
+import Usb from "../static/Icons/module/redefined/Usb";
 import Wallsocket from "../static/Icons/module/Wallsocket";
 import uuid from "uuid/dist/v4";
 const ModuleData = [
@@ -37,18 +41,18 @@ const ModuleData = [
   },
   {
     index: 3,
-    name: "Close Curtain",
-    icon: Closecurtain,
-    mainIcon: Closecurtain,
+    name: "Curtains",
+    icon: Curtain,
+    mainIcon: Curtain,
     size: "normal",
   },
-  {
-    index: 4,
-    name: "Open Curtain",
-    icon: Opencurtain,
-    mainIcon: Opencurtain,
-    size: "normal",
-  },
+  // {
+  //   index: 4,
+  //   name: "Open Curtain",
+  //   icon: Opencurtain,
+  //   mainIcon: Opencurtain,
+  //   size: "normal",
+  // },
   {
     index: 5,
     name: "Doorbell",
@@ -63,23 +67,23 @@ const ModuleData = [
     mainIcon: Fan,
     size: "normal",
   },
-  {
-    index: 7,
-    name: "Fan Ragulator",
-    icon: Fanragulator,
-    mainIcon: Fanragulator,
-    size: "normal",
-  },
+  // {
+  //   index: 7,
+  //   name: "Fan Ragulator",
+  //   icon: Fanragulator,
+  //   mainIcon: Fanragulator,
+  //   size: "normal",
+  // },
   {
     index: 8,
-    name: "Light",
+    name: "High AMP Switch",
     icon: Flashlight,
     mainIcon: Flashlight,
     size: 1,
   },
   {
     index: 9,
-    name: "No Name 1",
+    name: "Ac Switch",
     icon: Noname,
     mainIcon: Noname,
     size: 1,
