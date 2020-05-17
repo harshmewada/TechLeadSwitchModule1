@@ -1,3 +1,5 @@
+//testing
+
 import React, { useCallback } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import {
@@ -62,63 +64,24 @@ const ResizeCOntainer = (props) => {
   const wheelResize = (e) => {
     if (edit === true) {
       let variable = state + e.deltaY / 4;
-      if (variable < maxWidth) {
-        setState(variable);
+      if (variable < windowWidth / 100) {
+        if (snackactive !== true) {
+          dispatch(ShowSnackBar(true, "error", "Min Size"));
+        }
       }
       if (variable > maxWidth) {
         if (snackactive !== true) {
           dispatch(ShowSnackBar(true, "error", "Max Size"));
         }
       }
+      if (variable < maxWidth && variable > windowWidth / 100) {
+        setState(variable);
+      }
     }
   };
 
-  const [cards, setCards] = React.useState([]);
-  React.useEffect(() => {
-    setCards(Boxes);
-    console.log("Boxes effect", Boxes);
-  }, [SizeData]);
-
   //fintBox
 
-  const moveCard = useCallback(
-    (id, atIndex) => {
-      const { card, index } = findCard(id);
-      console.log("moveCard", card, index);
-      setCards(
-        update(cards, {
-          $splice: [
-            [index, 1],
-            [atIndex, 0, card],
-          ],
-        })
-      );
-    },
-    [cards]
-  );
-
-  const findCard = useCallback(
-    (id) => {
-      const card = cards.filter((c) => `${c.id}` === id)[0];
-
-      return {
-        card,
-        index: cards.indexOf(card),
-      };
-    },
-    [cards]
-  );
-
-  const removeCard = useCallback(
-    (id) => {
-      const { card, index } = findCard(id);
-      dispatch(removeFromBOx(index));
-      let newCards = cards;
-      newCards[index] = 1;
-      setCards(newCards);
-    },
-    [cards]
-  );
   connectDropTarget(ref);
   const dashvalues = useSelector((state) => state.dashModule);
   const { led } = dashvalues;
@@ -126,41 +89,36 @@ const ResizeCOntainer = (props) => {
     <div>
       <Grid
         container
+        ref={ref}
         className={classes.gridContainer}
         alignItems="center"
         justify="center"
         style={{
-          maxWidth: state * size,
+          maxWidth: state ? state * size : 0,
 
           background: defaultGlass === null ? defaultBg : defaultGlass.bg,
           display: BoxLength === 0 ? "none" : "",
         }}
         component={Paper}
         onWheel={(e, d) => wheelResize(e)}
-        ref={ref}
       >
-        {cards.length > 0 &&
-          cards.map((card, index) => {
-            return (
-              // <Card
-              //   key={card.index}
-              //   id={`${card.index}`}
-              //   text={card.name}
-              //   moveCard={moveCard}
-              //   findCard={findCard}
-              // />
-              <GridContainer
-                key={index}
-                id={`${card.id}`}
-                data={card}
-                led={led}
-                sizes={state}
-                moveCard={moveCard}
-                findCard={findCard}
-                removeCard={removeCard}
-              />
-            );
-          })}
+        <GridContainer led={led} sizes={state} />
+        {/* {cards.length > 0 &&
+        cards.map((card, index) => {
+          return (
+          
+            <GridContainer
+              key={index}
+              id={`${card.id}`}
+              data={card}
+              led={led}
+              sizes={state}
+              moveCard={moveCard}
+              findCard={findCard}
+              removeCard={removeCard}
+            />
+          );
+        })} */}
       </Grid>
       <Hidden smDown>
         <div className={classes.resizeBtnCOntainer}>
@@ -180,22 +138,189 @@ export default DropTarget(ItemTypes.CARD, {}, (connect) => ({
   connectDropTarget: connect.dropTarget(),
 }))(ResizeCOntainer);
 
-// import React from "react";
-// import { makeStyles } from "@material-ui/core/styles";
+//working
 
-// import Example from "./example";
-// const useStyles = makeStyles((theme) => ({}));
-// const ResizeContainer = () => {
+// import React, { useCallback } from "react";
+// import { makeStyles } from "@material-ui/core/styles";
+// import {
+//   Paper,
+//   Grid,
+//   Button,
+//   IconButton,
+//   Tooltip,
+//   Hidden,
+// } from "@material-ui/core";
+// import DragIcon from "@material-ui/icons/ZoomOutMapOutlined";
+// import GridContainer from "./GridContainer";
+// import { useSelector, useDispatch } from "react-redux";
+
+// import { ShowSnackBar } from "../../actions/snackActions";
+// import { DropTarget } from "react-dnd";
+// import update from "immutability-helper";
+// import ItemTypes from "./ItemTypes";
+// import { removeFromBOx } from "../../actions/sizeaction";
+// const useStyles = makeStyles((theme) => ({
+//   box: {
+//     // backgroundColor: "red",
+//   },
+//   gridContainer: {
+//     // marginTop: "-25vh",
+//   },
+//   resizeBtnCOntainer: {
+//     width: "100%",
+
+//     display: "flex",
+//     justifyContent: "flex-end",
+//   },
+//   resizeBtn: {
+//     marginTop: "-1.5vh",
+//     marginRight: "-.7vw",
+//     color: theme.palette.grey[500],
+//   },
+// }));
+// const ResizeCOntainer = (props) => {
+//   const ref = React.useRef(null);
+//   const { edit, connectDropTarget } = props;
 //   const classes = useStyles();
+//   const windowWidth = window.innerWidth;
+//   let GlassData = useSelector((state) => state.glassModule);
+//   let defaultGlass = GlassData.item;
+//   let defaultBg = "#eee";
+
+//   const SizeData = useSelector((state) => state.sizeModule);
+//   const { Boxes, size, width, maxWidth, mobileWidth } = SizeData;
+//   let BoxLength = Boxes.length;
+
+//   const [state, setState] = React.useState();
+//   const dispatch = useDispatch();
+
+//   const snackactive = useSelector((state) => state.snackModule.active);
+
+//   React.useEffect(() => {
+//     // setGridSize(size);
+//     windowWidth < 800 ? setState(mobileWidth) : setState(width);
+//   }, [width, size]);
+
+//   const wheelResize = (e) => {
+//     if (edit === true) {
+//       let variable = state + e.deltaY / 4;
+//       if (variable < maxWidth) {
+//         setState(variable);
+//       }
+//       if (variable > maxWidth) {
+//         if (snackactive !== true) {
+//           dispatch(ShowSnackBar(true, "error", "Max Size"));
+//         }
+//       }
+//     }
+//   };
+
+//   const [cards, setCards] = React.useState([]);
+//   React.useEffect(() => {
+//     setCards(Boxes);
+//     console.log("Boxes effect", Boxes);
+//   }, [SizeData]);
+
+//   //fintBox
+
+//   const moveCard = useCallback(
+//     (id, atIndex) => {
+//       const { card, index } = findCard(id);
+//       console.log("moveCard", card, index);
+//       setCards(
+//         update(cards, {
+//           $splice: [
+//             [index, 1],
+//             [atIndex, 0, card],
+//           ],
+//         })
+//       );
+//     },
+//     [cards]
+//   );
+
+//   const findCard = useCallback(
+//     (id) => {
+//       const card = cards.filter((c) => `${c.id}` === id)[0];
+
+//       return {
+//         card,
+//         index: cards.indexOf(card),
+//       };
+//     },
+//     [cards]
+//   );
+
+//   const removeCard = useCallback(
+//     (id) => {
+//       const { card, index } = findCard(id);
+//       dispatch(removeFromBOx(index));
+//       let newCards = cards;
+//       newCards[index] = 1;
+//       setCards(newCards);
+//     },
+//     [cards]
+//   );
+//   connectDropTarget(ref);
+//   const dashvalues = useSelector((state) => state.dashModule);
+//   const { led } = dashvalues;
 //   return (
 //     <div>
+//       <Grid
+//         container
+//         className={classes.gridContainer}
+//         alignItems="center"
+//         justify="center"
+//         style={{
+//           maxWidth: state ? state * size : 0,
 
-//         <Example />
-
+//           background: defaultGlass === null ? defaultBg : defaultGlass.bg,
+//           display: BoxLength === 0 ? "none" : "",
+//         }}
+//         component={Paper}
+//         onWheel={(e, d) => wheelResize(e)}
+//         ref={ref}
+//       >
+// {cards.length > 0 &&
+//   cards.map((card, index) => {
+//     return (
+//       // <Card
+//       //   key={card.index}
+//       //   id={`${card.index}`}
+//       //   text={card.name}
+//       //   moveCard={moveCard}
+//       //   findCard={findCard}
+//       // />
+//       <GridContainer
+//         key={index}
+//         id={`${card.id}`}
+//         data={card}
+//         led={led}
+//         sizes={state}
+//         moveCard={moveCard}
+//         findCard={findCard}
+//         removeCard={removeCard}
+//       />
+//     );
+//   })}
+//       </Grid>
+//       <Hidden smDown>
+//         <div className={classes.resizeBtnCOntainer}>
+//           {edit && (
+//             <div draggable>
+//               <Tooltip title="Scroll on The Board to Resize">
+//                 <DragIcon className={classes.resizeBtn} />
+//               </Tooltip>
+//             </div>
+//           )}
+//         </div>
+//       </Hidden>
 //     </div>
 //   );
 // };
-// export default ResizeContainer;
+// export default DropTarget(ItemTypes.CARD, {}, (connect) => ({
+//   connectDropTarget: connect.dropTarget(),
+// }))(ResizeCOntainer);
 
 // import React from "react";
 // import { makeStyles } from "@material-ui/core/styles";
@@ -349,22 +474,22 @@ export default DropTarget(ItemTypes.CARD, {}, (connect) => ({
 //     this.onDragEnd = this.onDragEnd.bind(this);
 //   }
 
-// onDragEnd(result) {
-//   // dropped outside the list
-//   if (!result.destination) {
-//     return;
+//   onDragEnd(result) {
+//     // dropped outside the list
+//     if (!result.destination) {
+//       return;
+//     }
+
+//     const items = reorder(
+//       this.state.items,
+//       result.source.index,
+//       result.destination.index
+//     );
+
+//     this.setState({
+//       items,
+//     });
 //   }
-
-//   const items = reorder(
-//     this.state.items,
-//     result.source.index,
-//     result.destination.index
-//   );
-
-//   this.setState({
-//     items,
-//   });
-// }
 
 //   // Normally you would want to split things out into separate components.
 //   // But in this example everything is just done in one place for simplicity
@@ -412,7 +537,7 @@ export default DropTarget(ItemTypes.CARD, {}, (connect) => ({
 // }
 // export default App;
 
-// working resize
+// working resize old
 
 // import React from "react";
 // import { makeStyles } from "@material-ui/core/styles";

@@ -52,7 +52,7 @@ const sizeReducer = (state = initialstate, action) => {
     case REMOVE_FROM_BOX:
       let index = action.payload;
       let newBoxes = state.Boxes;
-      newBoxes[index] = 1;
+      newBoxes[index] = emptydata;
 
       // console.log(index, "remove from box");
 

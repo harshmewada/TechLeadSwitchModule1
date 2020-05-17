@@ -25,12 +25,10 @@ const store = createStore(
 //   insertionPoint: "jss-insertion-point",
 // });
 ReactDOM.render(
-  <JssProvider generateClassName={generateClassName} classNamePrefix="app-1">
-    <React.StrictMode>
-      <Provider store={store}>
-        <App />
-      </Provider>
-    </React.StrictMode>
+  <JssProvider generateClassName={generateClassName}>
+    <Provider store={store}>
+      <App />
+    </Provider>
   </JssProvider>,
   document.getElementById("root")
 );
