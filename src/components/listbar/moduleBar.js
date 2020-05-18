@@ -34,7 +34,7 @@ const ModuleBar = (props) => {
     size: "normal",
   };
   const findIndex = Boxes.filter((data) => data.name === emptydata.name);
-
+  console.log(findIndex, "findindex");
   React.useEffect(() => {
     if (findIndex.length === 0) {
       setBarDisabled(true);
