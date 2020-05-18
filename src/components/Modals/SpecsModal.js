@@ -28,7 +28,7 @@ const SpecsModal = (props) => {
   let type = "";
   let { Boxes } = sizeModuel;
 
-  Boxes.map((data) => (type = type + ", " + data.name));
+  Boxes.map((data) => (type = type + " " + data.name.replace(/\s/g, "")));
 
   const open = useSelector((state) => state.utilModule.specs);
   return (

@@ -12,6 +12,7 @@ import update from "immutability-helper";
 import { removeFromBOx } from "../../actions/sizeaction";
 const useStyles = makeStyles((theme) => ({}));
 const GridContainer = (props) => {
+  const bgColor = useSelector((state) => state.glassModule.item);
   const SizeData = useSelector((state) => state.sizeModule);
   const { Boxes, size, maxWidth, mobileWidth } = SizeData;
   let BoxLength = Boxes.length;
@@ -37,11 +38,19 @@ const GridContainer = (props) => {
   //   setData(props.data);
   //   console.log("data changed", data);
   // }, [props.data]);
-
+  let moveIndex = 0;
   const moveCard = useCallback(
     (id, atIndex) => {
       const { card, index } = findCard(id);
-      // console.log("moveCard", card, index);
+      // console.log("moveCard", index, atIndex);
+
+      let newArr = cards;
+      let item1 = newArr[atIndex];
+      let item2 = newArr[index];
+      moveIndex = moveIndex + 1;
+      // console.log(atIndex, "atindex", "\n", "index", index, "\n", moveIndex);
+
+      // setCards(update(cards,));
       setCards(
         update(cards, {
           $splice: [
@@ -56,8 +65,29 @@ const GridContainer = (props) => {
 
   const findCard = useCallback(
     (id) => {
-      const card = cards.filter((c) => `${c.id}` === id)[0];
+      // let card;
 
+      // card =
+      //   id === undefined
+      //     ? cards.filter((c) => `${c.index}` === undefined)[0]
+      //     : cards.filter((c) => `${c.id}` === id)[0];
+
+      // console.log(
+      //   card,
+      //   "\n",
+      //   id,
+      //   "findcard",
+      //   "\n",
+      //   cards.filter((c) => console.log("innerconsole", c.index))
+      // );
+      // return {
+      //   card,
+      //   index: cards.indexOf(card),
+      // };
+
+      const card = cards.filter((c) => c.id === id)[0];
+      // console.log(card, id, "findCard");
+      // console.log("card index", cards.indexOf(card), card);
       return {
         card,
         index: cards.indexOf(card),
@@ -86,13 +116,17 @@ const GridContainer = (props) => {
       style={{ height: props.sizes, width: props.sizes, opacity: opacity }}
     >
       <BoxContainer
+        index={index}
         id={data.id}
         key={index}
         data={data}
         active={led}
+        bgColor={bgColor}
+        width={props.sizes}
         moveCard={moveCard}
         findCard={findCard}
         removeCard={removeCard}
+        Delete={() => removeCard(data.id)}
       />
     </Grid>
   ));

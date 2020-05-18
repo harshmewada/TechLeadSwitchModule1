@@ -13,10 +13,11 @@ import Modals from "../../components/Modals";
 import { ShowSpecifications } from "../../actions/utilActions";
 import { ShowSnackBar } from "../../actions/snackActions";
 import EmptyIcon from "../../static/Icons/module/EmptyModule";
-
+import uuid from "uuid/dist/v4";
 const emptydata = {
   index: null,
   name: null,
+  id: uuid(),
   icon: EmptyIcon,
   mainIcon: EmptyIcon,
   size: "normal",

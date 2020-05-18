@@ -17,8 +17,9 @@ const initialstate = {
 };
 
 const emptydata = {
-  index: null,
+  index: 10,
   name: null,
+
   icon: EmptyIcon,
   mainIcon: EmptyIcon,
   size: "normal",
@@ -27,10 +28,17 @@ const sizeReducer = (state = initialstate, action) => {
   switch (action.type) {
     case SELECT_SIZE:
       // console.log(action.payload.data.value);
-      let NewArray = new Array(action.payload.data.value);
-      NewArray.fill(emptydata);
+      // let NewArray = new Array(action.payload.data.value);
+      let NewArray = [];
+      for (let i = 0; i < action.payload.data.value; i++) {
+        NewArray.push({ ...emptydata, id: uuid() });
+        // console.log(NewArray);
+      }
+
+      // NewArray.fill(emptydata);
       // console.log(action.payload.data, "size reducer");
       return {
+        ...state,
         index: action.payload.index,
         Boxes: NewArray,
         ...action.payload.data,
@@ -41,8 +49,18 @@ const sizeReducer = (state = initialstate, action) => {
       };
 
     case PUSH_TO_BOX:
+      // console.log(
+      //   "Filter",
+
+      //   state.Boxes.filter((c) => c.name === null),
+      //   "\n",
+      //   state.Boxes,
+      //   "\n"
+      // );
+      let card = state.Boxes.filter((c) => c.name === null)[0];
       let BOX = state.Boxes;
-      let ITEMINDEX = BOX.indexOf(emptydata);
+      let ITEMINDEX = BOX.indexOf(card);
+      // console.log(ITEMINDEX, "itemindex", card);
       BOX[ITEMINDEX] = { ...action.payload.data, id: uuid() };
 
       return {
@@ -52,7 +70,7 @@ const sizeReducer = (state = initialstate, action) => {
     case REMOVE_FROM_BOX:
       let index = action.payload;
       let newBoxes = state.Boxes;
-      newBoxes[index] = emptydata;
+      newBoxes[index] = { ...emptydata, id: uuid() };
 
       // console.log(index, "remove from box");
 
