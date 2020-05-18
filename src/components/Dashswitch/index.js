@@ -44,7 +44,7 @@ const DashSwitch = () => {
 
     // const moduleError = !sizeError && !size.includes(emptydata) ? false : true;
     const moduleError =
-      !sizeError && size.filter((data) => data.index === null).length === 0
+      !sizeError && size.filter((data) => data.name === null).length === 0
         ? false
         : true;
     // console.log("size", sizeError, "color", colorError, "module", moduleError);
