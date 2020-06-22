@@ -9,6 +9,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { pushToBox } from "../../actions/sizeaction";
 import { ShowSnackBar } from "../../actions/snackActions";
 import EmptyIcon from "../../static/Icons/module/EmptyModule";
+import canbeAdded from "../../functions/canbeAdded";
 
 const useStyles = makeStyles((theme) => ({}));
 const ModuleBar = (props) => {
@@ -25,6 +26,7 @@ const ModuleBar = (props) => {
   const data = ModuleData;
 
   const Boxes = useSelector((state) => state.sizeModule.Boxes);
+  const selectedSizeModule = useSelector((state) => state.sizeModule.selectedSizedata)
   const BoxesLenght = Boxes.length;
   const emptydata = {
     index: null,
@@ -33,8 +35,8 @@ const ModuleBar = (props) => {
     mainIcon: EmptyIcon,
     size: "normal",
   };
-  const findIndex = Boxes.filter((data) => data.name === emptydata.name);
-  console.log(findIndex, "findindex");
+  const findIndex = Boxes.filter((data) => data.index === 25);
+  // console.log(findIndex, "findindex");
   React.useEffect(() => {
     if (findIndex.length === 0) {
       setBarDisabled(true);
@@ -44,16 +46,12 @@ const ModuleBar = (props) => {
     }
   }, [findIndex.length]);
   const handleClick = (index, data) => {
-    dipatch(selectModule(index));
-    // dipatch(pushToBox(data));
+    console.log(findIndex, "findindex");
 
-    // console.log(
-    //   "if loop moduleBar",
-    //   Boxes.includes(emptydata),
-    //   "\n",
-    //   findIndex
-    // );
-    console.log(findIndex.length);
+   let pushable =  canbeAdded(selectedSizeModule.moduleList,data)
+
+   if(pushable ===true){
+    dipatch(selectModule(index));
     if (findIndex.length !== 0) {
       dipatch(pushToBox(data));
       // setBarDisabled(false);
@@ -70,6 +68,42 @@ const ModuleBar = (props) => {
       // setBarDisabled(true);
     } else {
     }
+   }
+   else{
+    dipatch(
+      ShowSnackBar(
+        true,
+        "error",
+        "This Module can not be fitted here"
+      )
+    ); 
+   }
+    // dipatch(selectModule(index));
+    // // dipatch(pushToBox(data));
+
+    // // console.log(
+    // //   "if loop moduleBar",
+    // //   Boxes.includes(emptydata),
+    // //   "\n",
+    // //   findIndex
+    // // );
+    // console.log(findIndex.length);
+    // if (findIndex.length !== 0) {
+    //   dipatch(pushToBox(data));
+    //   // setBarDisabled(false);
+    // }
+
+    // if (findIndex.length === 0) {
+    //   dipatch(
+    //     ShowSnackBar(
+    //       true,
+    //       "error",
+    //       "Please Select Bigger Size Board or remove existing modules to add more"
+    //     )
+    //   );
+    //   // setBarDisabled(true);
+    // } else {
+    // }
   };
   return (
     <div>

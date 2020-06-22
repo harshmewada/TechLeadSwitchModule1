@@ -14,10 +14,11 @@ const initialstate = {
   Boxes: [],
   size: 0,
   edit: false,
+  selectedSizedata:{moduleList:[]}
 };
 
 const emptydata = {
-  index: 10,
+  index: 25,
   name: null,
 
   icon: EmptyIcon,
@@ -41,6 +42,7 @@ const sizeReducer = (state = initialstate, action) => {
         ...state,
         index: action.payload.index,
         Boxes: NewArray,
+        selectedSizedata:action.payload.data,
         ...action.payload.data,
       };
     case REMOVE_SIZE:

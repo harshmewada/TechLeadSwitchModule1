@@ -1,7 +1,7 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { Menu, MenuItem, Popover } from "@material-ui/core";
-import ColorPicker from "material-ui-color-picker";
+import {ChromePicker} from 'react-color'
 
 const useStyles = makeStyles((theme) => ({
   menu: {
@@ -15,7 +15,10 @@ const WallColorPicker = (props) => {
     <Popover
       className={classes.menu}
       open={Boolean(props.anchorEl)}
-      anchorEl={props.anchorEl}
+      // anchorEl={props.anchorEl}
+      anchorReference="anchorPosition"
+      anchorPosition={{ top: 1000, left: 1150 }}
+     
       anchorOrigin={{
         // vertical: "bottom",
         horizontal: "left",
@@ -26,12 +29,18 @@ const WallColorPicker = (props) => {
       }}
       {...props}
     >
-      <ColorPicker
+    
+
+    
+      <ChromePicker
         name="color"
-        defaultValue="#000"
+        color={defaultColor}
         // value={this.state.color} - for controlled component
-        onChange={(color) => console.log(color)}
+        onChange={(color) =>{
+          setDefaultColor(color.hex)
+          props.getwallcolor(color)}}
       />
+      
     </Popover>
   );
 };

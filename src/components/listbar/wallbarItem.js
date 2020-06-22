@@ -57,11 +57,11 @@ const useStyles = makeStyles((theme) => ({
     // padding: theme.spacing(1),
     // marginTop: "1.15vh",
     // // paddingBottom: "2.3vh",
-    height: "2.7vh",
-    width: "2.7vw",
+    height: "2vh",
+    width: "2vw",
     [theme.breakpoints.down("md")]: {
-      width: "2.7vh",
-      height: "2.7vh",
+      width: "2vh",
+      height: "2vh",
     },
     [theme.breakpoints.down("sm")]: {
       width: "4vh",
@@ -100,7 +100,7 @@ const ListBarItem = (props) => {
       <div className={classes.iconContainer}>
         <InnerIcon
           className={clsx(
-            index < 2 ? classes.halfIcon : classes.icon,
+            index < 1 ? classes.halfIcon : classes.icon,
             active === true ? classes.activeIcon : classes.normalColor
           )}
           color={active ? "white" : "black"}
