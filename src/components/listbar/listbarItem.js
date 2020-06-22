@@ -23,6 +23,7 @@ const useStyles = makeStyles((theme) => ({
   },
   iconContainer: {
     minWidth: "5vw",
+    height: "6vh",
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
@@ -35,7 +36,7 @@ const useStyles = makeStyles((theme) => ({
   },
   icon: {
     // fontSize: "2rem",
-    height: "5vh",
+    height: "10vh",
     width: "5vw",
     [theme.breakpoints.down("md")]: {
       height: "10vh",
@@ -48,12 +49,11 @@ const useStyles = makeStyles((theme) => ({
     // padding: theme.spacing(1),
     // marginTop: "1.15vh",
     // // paddingBottom: "2.3vh",
-    height: "2.7vh",
-    width: "2.7vw",
-    [theme.breakpoints.down("md")]: {
-      height: "7vh",
-      width: "7vw",
-    },
+    // height: "2.7vh",
+    // [theme.breakpoints.down("md")]: {
+    //   height: "7vh",
+    //   width: "7vw",
+    // },
   },
   normalColor: {
     color: theme.palette.text.secondary,
@@ -64,6 +64,9 @@ const useStyles = makeStyles((theme) => ({
     //   color: theme.palette.primary.light,
     // },
     // backgroundColor: "red",
+  },
+  singlelinIcon: {
+    height: "5vh",
   },
   name: {
     // color: theme.palette.text.secondary,
@@ -78,6 +81,12 @@ const ListBarItem = (props) => {
   const InnerIcon = icon;
   // console.log("active", active);
 
+  const getClass = (index) => {
+    alert(index);
+    if (index === 1) {
+      return classes.singlelinIcon;
+    }
+  };
   return (
     <Button
       fullWidth
@@ -90,13 +99,18 @@ const ListBarItem = (props) => {
       <div className={classes.iconContainer}>
         <InnerIcon
           className={clsx(
-            index < 2 ? classes.halfIcon : classes.icon,
+            classes.icon,
+            // getClass(index),
             active === true ? classes.activeIcon : classes.normalColor
           )}
           color={active ? "white" : "black"}
         />
       </div>
-      <div>{name}</div>
+      <div
+        className={active === true ? classes.activeIcon : classes.normalColor}
+      >
+        {name}
+      </div>
     </Button>
   );
 };

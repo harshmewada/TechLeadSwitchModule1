@@ -1,6 +1,13 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import { Paper, Divider, Menu, MenuItem } from "@material-ui/core";
+import {
+  Paper,
+  Divider,
+  Menu,
+  MenuItem,
+  Popover,
+  Slide,
+} from "@material-ui/core";
 import SizeModuleData from "../../static/sizeModuleData";
 import ListBar from "./index";
 import ListBarItem from "./listbarItem";
@@ -14,6 +21,7 @@ import clsx from "clsx";
 import { ClickAwayListener } from "@material-ui/core";
 import { setWallColorAction } from "../../actions/wallactions";
 import ColorPicker from "../WallModules/ColorPicker";
+import { ChromePicker } from "react-color";
 
 const useStyles = makeStyles((theme) => ({
   icon: {
@@ -32,7 +40,7 @@ const WallBar = (props) => {
 
   const [open, setOpen] = React.useState();
   const [anchorEl, setanchorEl] = React.useState();
-  const [wallColor, setWallColor] = React.useState();
+  const [wallColor, setWallColor] = React.useState("#fff");
   const [selectedImg, setSelectedImg] = React.useState();
   const inputRef = React.useRef(null);
   const [activeIndex, setActiveIndex] = React.useState(null);
@@ -54,12 +62,15 @@ const WallBar = (props) => {
       setActiveIndex(null);
     }
     if (index === 2) {
+      // setanchorEl(e.currentTarget);
       setActiveIndex(index);
       dispatch(handleEdit());
     }
   };
   const handleWallColorChange = (e) => {
     dispatch(setWallColorAction("color", e.hex));
+    setWallColor(e.hex);
+    // setanchorEl(e.currentTarget);
   };
   const handleImageChange = (e) => {
     const file = e.target.files[0];
@@ -83,7 +94,6 @@ const WallBar = (props) => {
     <div>
       <ColorPicker
         anchorEl={anchorEl}
-        open={anchorEl === undefined ? false : true}
         onClose={() => setanchorEl()}
         getwallcolor={(e) => handleWallColorChange(e)}
       />

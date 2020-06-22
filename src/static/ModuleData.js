@@ -6,7 +6,7 @@ import Switch4 from "../static/Icons/module/Switch4";
 import Curtain from "../static/Icons/module/redefined/Curtain";
 import Doorbell from "../static/Icons/module/Doorbell";
 import Fan from "../static/Icons/module/redefined/Fan";
-import Fanragulator from "../static/Icons/module/Fanragulator";
+
 import Flashlight from "../static/Icons/module/Flashlight";
 import Noname from "../static/Icons/module/Noname";
 // import Rj45 from "../static/Icons/module/Rj45";

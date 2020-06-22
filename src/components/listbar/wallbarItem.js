@@ -106,7 +106,11 @@ const ListBarItem = (props) => {
           color={active ? "white" : "black"}
         />
       </div>
-      <div>{name}</div>
+      <div
+        className={active === true ? classes.activeIcon : classes.normalColor}
+      >
+        {name}
+      </div>
     </Button>
   );
 };

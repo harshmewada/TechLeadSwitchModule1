@@ -4,7 +4,7 @@ import { Grid, IconButton } from "@material-ui/core";
 import { DragSource, DropTarget } from "react-dnd";
 import ItemTypes from "../../containers/dashboard/ItemTypes";
 import clsx from "clsx";
-import DeleteIcon from "@material-ui/icons/Delete";
+import DeleteIcon from "@material-ui/icons/DeleteOutline";
 const useStyles = makeStyles((theme) => ({
   container: {
     height: "100%",
@@ -42,7 +42,6 @@ const useStyles = makeStyles((theme) => ({
   DeleteIcon: {
     padding: 5,
     margin: 10,
-    opacity: 0.3,
 
     color: theme.palette.grey[500],
 
@@ -51,14 +50,39 @@ const useStyles = makeStyles((theme) => ({
   nullBg: {
     backgroundColor: theme.palette.grey[700],
     color: "white",
+
+    "&:hover": {
+      backgroundColor: theme.palette.grey[1000],
+    },
+    "&:focused": {
+      backgroundColor: theme.palette.grey[1000],
+    },
   },
   bgWhite: {
-    backgroundColor: theme.palette.grey[700],
-    color: "white",
+    backgroundColor: "white",
+    color: theme.palette.grey[700],
+    "&:focused": {
+      backgroundColor: theme.palette.grey[1000],
+    },
+    "&:hover": {
+      backgroundColor: theme.palette.grey[1000],
+    },
   },
   bgBlack: {
     backgroundColor: "white",
     color: theme.palette.grey[700],
+    "&:hover": {
+      backgroundColor: theme.palette.grey[1000],
+    },
+    "&:focused": {
+      backgroundColor: theme.palette.grey[1000],
+    },
+  },
+  deleteIcon: {
+    fontSize: "20px",
+    [theme.breakpoints.down("md")]: {
+      fontSize: "10px",
+    },
   },
 }));
 const BoxContainer = (props) => {
@@ -78,6 +102,7 @@ const BoxContainer = (props) => {
   const ref = React.useRef();
   connectDragSource(ref);
   connectDropTarget(ref);
+
   return (
     <div ref={ref} className={classes.container}>
       <Grid
@@ -108,7 +133,7 @@ const BoxContainer = (props) => {
             size="small"
             onClick={() => props.Delete()}
           >
-            <DeleteIcon fontSize="small" />
+            <DeleteIcon className={classes.deleteIcon} />
           </IconButton>
         </div>
         <Grid item container justify="center" alignItems="center">

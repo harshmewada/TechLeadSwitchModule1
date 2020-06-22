@@ -25,13 +25,13 @@ const useStyles = makeStyles((theme) => ({
     // left: "80%",
     right: "8.33%",
     zIndex: 10,
-    height: "90vh",
+    height: "85vh",
 
     marginTop: 0,
   },
   Paper: {
     borderRadius: 0,
-    height: "90vh",
+    height: "85vh",
     overflowY: "auto",
     // backgroundColor: "red",
     minWidth: 280,

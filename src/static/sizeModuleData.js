@@ -1,10 +1,11 @@
 import logo from "../logo.svg";
-import Sizetwo from "../static/Icons/size/Sizeone.js";
-import Sizefour from "../static/Icons/size/Sizetwo.js";
-import Sizesix from "../static/Icons/size/Sizethree.js";
-import Sizeeight from "../static/Icons/size/Sizefour.js";
-import Sizetwelve from "../static/Icons/size/Sizesix.js";
-import Sizeeighteen from "../static/Icons/size/Sizenine.js";
+import Sizetwo from "../static/Icons/size/Sizetwo.js";
+import Sizefour from "../static/Icons/size/Sizefour.js";
+import Sizesix from "../static/Icons/size/Sizesix.js";
+import Sizeeight from "../static/Icons/size/Sizeeight.js";
+import Sizetwelve from "../static/Icons/size/Sizetwelve.js";
+import Sizeeighteen from "../static/Icons/size/Sizeeighteen.js";
+
 import uuid from "uuid/dist/v4";
 const SizeModuleData = [
   {
@@ -50,9 +51,9 @@ const SizeModuleData = [
     icon: Sizeeight,
     value: 4,
     size: 4,
-    width: 200,
-    mobileWidth: 80,
-    maxWidth: 300,
+    width: 150,
+    mobileWidth: 60,
+    maxWidth: 150,
     boardSize: "252.5 x 92 MM",
   },
   {

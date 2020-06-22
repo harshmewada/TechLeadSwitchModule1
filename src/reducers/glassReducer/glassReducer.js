@@ -6,8 +6,15 @@ import {
 } from "./types";
 
 const initialstate = {
-  index: null,
-  item: null,
+  index: 0,
+  item: {
+    index: 0,
+    name: "white",
+
+    value: "white",
+    bg:
+      "linear-gradient(159.39deg, #FFFFFF -51.91%, #F7F7F7 42.06%, #EEEEEE 42.55%)",
+  },
 };
 
 const GlassSELECT_GLASSReducer = (state = initialstate, action) => {

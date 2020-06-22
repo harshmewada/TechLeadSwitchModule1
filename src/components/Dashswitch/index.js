@@ -14,6 +14,7 @@ import { ShowSpecifications } from "../../actions/utilActions";
 import { ShowSnackBar } from "../../actions/snackActions";
 import EmptyIcon from "../../static/Icons/module/EmptyModule";
 import uuid from "uuid/dist/v4";
+import clsx from "clsx";
 const emptydata = {
   index: null,
   name: null,
@@ -28,6 +29,10 @@ const useStyles = makeStyles((theme) => ({
   },
   btn: {
     backgroundColor: "white",
+    fontSize: 16,
+  },
+  font: {
+    fontSize: 15,
   },
 }));
 
@@ -82,7 +87,7 @@ const DashSwitch = () => {
               control={
                 <Switch color="primary" onChange={() => switchChange()} />
               }
-              label="Active"
+              label="ACTIVE"
               labelPlacement="start"
             />
           </Paper>
@@ -91,7 +96,7 @@ const DashSwitch = () => {
         <Grid item lg={8}>
           <Button
             fullWidth
-            className={classes.btn}
+            className={clsx(classes.btn)}
             variant="contained"
             onClick={() => handleSPecs()}
           >

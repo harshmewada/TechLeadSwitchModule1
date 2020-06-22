@@ -45,12 +45,15 @@ const GridContainer = (props) => {
       // console.log("moveCard", index, atIndex);
 
       let newArr = cards;
-      let item1 = newArr[atIndex];
-      let item2 = newArr[index];
+      const item1 = newArr[atIndex];
+      const item2 = newArr[index];
+      // newArr[atIndex] = item2;
+      // newArr[index] = item1;
       moveIndex = moveIndex + 1;
       // console.log(atIndex, "atindex", "\n", "index", index, "\n", moveIndex);
 
       // setCards(update(cards,));
+
       setCards(
         update(cards, {
           $splice: [

@@ -21,15 +21,19 @@ import {
 import MobileDrawer from "./MobileDrawer";
 const useStyles = makeStyles((theme) => ({
   AppBar: {
+    height: "15vh",
+    display: "flex",
+    justifyContent: "center",
     backgroundColor: theme.palette.primary.main,
     [theme.breakpoints.down("sm")]: {
       zIndex: theme.zIndex.appBar + 1,
+      height: "10vh",
     },
   },
   logo: {
-    height: "5vh",
+    height: "12vh",
     [theme.breakpoints.down("md")]: {
-      height: "4vh",
+      height: "7vh",
     },
   },
   icon: {
