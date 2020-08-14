@@ -9,6 +9,7 @@ import {
   IconButton,
   Tooltip,
   Hidden,
+  Modal,
 } from "@material-ui/core";
 import DragIcon from "@material-ui/icons/ZoomOutMapOutlined";
 import GridContainer from "./GridContainer";
@@ -19,12 +20,17 @@ import { DropTarget } from "react-dnd";
 import update from "immutability-helper";
 import ItemTypes from "./ItemTypes";
 import { removeFromBOx } from "../../actions/sizeaction";
+import { useScreenshot } from 'use-react-screenshot'
 const useStyles = makeStyles((theme) => ({
   box: {
     // backgroundColor: "red",
   },
   gridContainer: {
     // marginTop: "-25vh",
+    padding:'5vh',
+    [theme.breakpoints.down('md')]:{
+      padding:'5vh',
+    }
   },
   resizeBtnCOntainer: {
     width: "100%",
@@ -39,6 +45,8 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 const ResizeCOntainer = (props) => {
+
+  const [modalOpen,setModalOpen] = React.useState(false)
   const ref = React.useRef(null);
   const { edit, connectDropTarget } = props;
   const classes = useStyles();
@@ -52,6 +60,9 @@ const ResizeCOntainer = (props) => {
   let BoxLength = Boxes.length;
 
   const [state, setState] = React.useState();
+
+  const [image, takeScreenshot] = useScreenshot()
+  const getImage = () => takeScreenshot(ref.current)
   const dispatch = useDispatch();
 
   const snackactive = useSelector((state) => state.snackModule.active);
@@ -79,7 +90,10 @@ const ResizeCOntainer = (props) => {
       }
     }
   };
-
+const handleScreenShot = ()=>{
+  getImage()
+  setTimeout(setModalOpen(true),3000)
+}
   //fintBox
 
   connectDropTarget(ref);
@@ -87,6 +101,12 @@ const ResizeCOntainer = (props) => {
   const { led } = dashvalues;
   return (
     <div>
+      <Modal open={modalOpen}>
+        <img src={image} style={{height:'500px',width:'500px'}}/>
+      </Modal>
+      <Button onClick={()=>handleScreenShot()}>
+        Take ss
+      </Button>
       <Grid
         container
         ref={ref}
@@ -94,10 +114,13 @@ const ResizeCOntainer = (props) => {
         alignItems="center"
         justify="center"
         style={{
-          maxWidth: state ? state * size : 0,
+          maxWidth: state ? state * size +100 : 0,
 
           background: defaultGlass === null ? defaultBg : defaultGlass.bg,
           display: BoxLength === 0 ? "none" : "",
+        
+        
+         
         }}
         component={Paper}
         onWheel={(e, d) => wheelResize(e)}

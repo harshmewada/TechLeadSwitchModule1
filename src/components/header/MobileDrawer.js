@@ -144,7 +144,7 @@ export default function MobileDrawer(props) {
           <Divider />
           <ListItem button onClick={() => switchChange()}>
             <ListItemSecondaryAction>
-              <Switch color="primary" value={led} />
+              <Switch color="primary" checked={led} />
             </ListItemSecondaryAction>
             <ListItemText primary="LED Active" />
           </ListItem>

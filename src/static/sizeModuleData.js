@@ -15,8 +15,8 @@ const SizeModuleData = [
     icon: Sizetwo,
     value: 1,
     size: 1,
-    width: 200,
-    mobileWidth: 200,
+    width: 150,
+    mobileWidth: 150,
     maxWidth: 400,
     boardSize: "92 x 92 MM",
     moduleList:[1,2,4,5,7,13,14,9,12,8]
@@ -28,8 +28,8 @@ const SizeModuleData = [
     icon: Sizefour,
     value: 2,
     size: 2,
-    width: 200,
-    mobileWidth: 150,
+    width: 150,
+    mobileWidth: 120,
     maxWidth: 300,
     boardSize: "157 x 92 MM",
     moduleList:[1,2,4,5,7,13,14,9,12,3,6,8]
@@ -41,8 +41,8 @@ const SizeModuleData = [
     icon: Sizesix,
     value: 3,
     size: 3,
-    width: 200,
-    mobileWidth: 100,
+    width: 150,
+    mobileWidth: 80,
     maxWidth: 300,
     boardSize: "237.5 x 92 MM",
     moduleList:[1,2,4,5,7,13,14,9,12,3,6,8]
@@ -68,7 +68,7 @@ const SizeModuleData = [
     value: 6,
     size: 3,
     width: 150,
-    mobileWidth: 110,
+    mobileWidth: 60,
     maxWidth: 180,
     boardSize: "237.5 x 178 MM",
     moduleList:[1,2,4,5,7,13,14,9,12,3,6,8]
@@ -82,7 +82,7 @@ const SizeModuleData = [
     value: 9,
     size: 3,
     width: 150,
-    mobileWidth: 110,
+    mobileWidth: 80,
     maxWidth: 180,
     boardSize: "237.5 x 264 MM",
     moduleList:[1,2,4,5,7,13,14,9,12,3,6,8]

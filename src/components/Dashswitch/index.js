@@ -87,7 +87,7 @@ const DashSwitch = () => {
               control={
                 <Switch color="primary" onChange={() => switchChange()} />
               }
-              label="ACTIVE"
+              label="LED"
               labelPlacement="start"
             />
           </Paper>

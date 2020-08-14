@@ -12,12 +12,18 @@ const useStyles = makeStyles((theme) => ({
   icon: {
     height: "40%",
     width: "40%",
+    [theme.breakpoints.down("md")]:{
+      height: "50%",
+      width: "50%",
+    }
     // color: "red",
     // backgroundColor: "green",
   },
   halfIcon: {
-    height: "10%",
-    width: "10%",
+    [theme.breakpoints.down("md")]:{
+      height: "13%",
+      width: "13%",
+    }
   },
   fullOpacity: {
     opacity: 1,
@@ -140,6 +146,7 @@ const BoxContainer = (props) => {
           <InnerIcon
             className={clsx(
               size === 1 ? classes.halfIcon : classes.icon,
+
               active ? classes.fullOpacity : classes.halfOpacity
               // active === true ? classes.activeIcon : classes.normalColor
             )}
