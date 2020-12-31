@@ -126,6 +126,7 @@ const GridContainer = (props) => {
         active={led}
         bgColor={bgColor}
         width={props.sizes}
+        hideAllBtns={props.hideAllBtns}
         moveCard={moveCard}
         findCard={findCard}
         removeCard={removeCard}

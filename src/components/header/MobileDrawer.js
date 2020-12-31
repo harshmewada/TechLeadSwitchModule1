@@ -35,6 +35,10 @@ const useStyles = makeStyles({
   btn: {
     color: "white",
   },
+  menuIcon: {
+    fontSize: "28px",
+    paddingRight: "3vw",
+  },
 });
 
 export default function MobileDrawer(props) {
@@ -56,10 +60,10 @@ export default function MobileDrawer(props) {
 
     // const moduleError = !sizeError && !size.includes(emptydata) ? false : true;
     const moduleError =
-      !sizeError && size.filter((data) => data.index === null).length === 0
+      !sizeError && size.filter((data) => data.name === null).length === 0
         ? false
         : true;
-    // console.log("size", sizeError, "color", colorError, "module", moduleError);
+    console.log("size", sizeError, "color", colorError, "module", moduleError);
     return sizeError || colorError || moduleError;
   };
 
@@ -102,7 +106,7 @@ export default function MobileDrawer(props) {
             <ListItemText primary="Reset Module" />
           </ListItem>
           <Divider />
-          <ListItem
+          {/* <ListItem
             button
             onClick={() => {
               toggleDrawer();
@@ -113,7 +117,7 @@ export default function MobileDrawer(props) {
               <ShareIcon />
             </ListItemIcon>
             <ListItemText primary="Share" />
-          </ListItem>
+          </ListItem> */}
           <Divider />
           <ListItem
             button
@@ -157,7 +161,7 @@ export default function MobileDrawer(props) {
   return (
     <div>
       <IconButton onClick={(e) => toggleDrawer(e)} className={classes.btn}>
-        <MenuIcon />
+        <MenuIcon className={classes.menuIcon} />
       </IconButton>
       <Drawer anchor="right" open={state} onClose={(e) => toggleDrawer(e)}>
         {list()}

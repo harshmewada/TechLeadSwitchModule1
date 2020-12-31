@@ -5,6 +5,7 @@ import {
   REMOVE_FROM_BOX,
   SET_MOVE,
   SET_EDIT,
+  SET_SCREENSHOT,
 } from "./types";
 import uuid from "uuid/dist/v4";
 import EmptyIcon from "../../static/Icons/module/EmptyModule";
@@ -12,9 +13,10 @@ import EmptyIcon from "../../static/Icons/module/EmptyModule";
 const initialstate = {
   index: null,
   Boxes: [],
+  previewImage: undefined,
   size: 0,
   edit: false,
-  selectedSizedata:{moduleList:[]}
+  selectedSizedata: { moduleList: [] },
 };
 
 const emptydata = {
@@ -42,7 +44,7 @@ const sizeReducer = (state = initialstate, action) => {
         ...state,
         index: action.payload.index,
         Boxes: NewArray,
-        selectedSizedata:action.payload.data,
+        selectedSizedata: action.payload.data,
         ...action.payload.data,
       };
     case REMOVE_SIZE:
@@ -86,6 +88,13 @@ const sizeReducer = (state = initialstate, action) => {
         ...state,
 
         edit: !state.edit,
+      };
+
+    case SET_SCREENSHOT:
+      return {
+        ...state,
+
+        previewImage: action.payload,
       };
     case "RESET":
       return initialstate;

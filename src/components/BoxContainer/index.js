@@ -1,6 +1,6 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import { Grid, IconButton } from "@material-ui/core";
+import { Grid, IconButton, Typography } from "@material-ui/core";
 import { DragSource, DropTarget } from "react-dnd";
 import ItemTypes from "../../containers/dashboard/ItemTypes";
 import clsx from "clsx";
@@ -12,18 +12,18 @@ const useStyles = makeStyles((theme) => ({
   icon: {
     height: "40%",
     width: "40%",
-    [theme.breakpoints.down("md")]:{
+    [theme.breakpoints.down("md")]: {
       height: "50%",
       width: "50%",
-    }
+    },
     // color: "red",
     // backgroundColor: "green",
   },
   halfIcon: {
-    [theme.breakpoints.down("md")]:{
+    [theme.breakpoints.down("md")]: {
       height: "13%",
       width: "13%",
-    }
+    },
   },
   fullOpacity: {
     opacity: 1,
@@ -117,31 +117,33 @@ const BoxContainer = (props) => {
         alignItems="center"
         className={classes.container}
       >
-        <div
-          className={classes.deletecontainer}
-          style={{
-            width: width,
-            height: width,
-            display: data.name === null ? "none" : "inherit",
-          }}
-        >
-          <IconButton
-            className={clsx(
-              classes.DeleteIcon,
-              bgColor === null
-                ? classes.nullBg
-                : bgColor === "white"
-                ? classes.bgWhite
-                : bgColor === "black"
-                ? classes.bgBlack
-                : null
-            )}
-            size="small"
-            onClick={() => props.Delete()}
+        {!props.hideAllBtns && (
+          <div
+            className={classes.deletecontainer}
+            style={{
+              width: width,
+              height: width,
+              display: data.name === null ? "none" : "inherit",
+            }}
           >
-            <DeleteIcon className={classes.deleteIcon} />
-          </IconButton>
-        </div>
+            <IconButton
+              className={clsx(
+                classes.DeleteIcon,
+                bgColor === null
+                  ? classes.nullBg
+                  : bgColor === "white"
+                  ? classes.bgWhite
+                  : bgColor === "black"
+                  ? classes.bgBlack
+                  : null
+              )}
+              size="small"
+              onClick={() => props.Delete()}
+            >
+              <DeleteIcon className={classes.deleteIcon} />
+            </IconButton>
+          </div>
+        )}
         <Grid item container justify="center" alignItems="center">
           <InnerIcon
             className={clsx(

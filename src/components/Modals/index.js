@@ -16,12 +16,22 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
+    overflow: "auto",
+
+    outline: "none",
   },
   card: {
     minWidth: "30vw",
+    maxWidth: "80vw",
+    maxHeight: "90vh",
+    overflow: "auto",
+    outline: "none",
+
     [theme.breakpoints.down("md")]: {
       width: "auto",
-      margin: "0 10px",
+      maxWidth: "90vw",
+
+      // margin: "0 10px",
     },
   },
 }));

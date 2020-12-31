@@ -43,6 +43,7 @@ const DashSwitch = () => {
   const color = useSelector((state) => state.glassModule.item);
 
   const SpecsValidation = () => {
+    console.log("specs validation", size, color);
     const sizeError = size.length === 0 ? true : false;
 
     const colorError = color === null ? true : false;
@@ -52,7 +53,7 @@ const DashSwitch = () => {
       !sizeError && size.filter((data) => data.name === null).length === 0
         ? false
         : true;
-    // console.log("size", sizeError, "color", colorError, "module", moduleError);
+    console.log("size", sizeError, "color", colorError, "module", moduleError);
     return sizeError || colorError || moduleError;
   };
 
@@ -98,7 +99,9 @@ const DashSwitch = () => {
             fullWidth
             className={clsx(classes.btn)}
             variant="contained"
-            onClick={() => handleSPecs()}
+            onClick={() => {
+              handleSPecs();
+            }}
           >
             Specs
           </Button>

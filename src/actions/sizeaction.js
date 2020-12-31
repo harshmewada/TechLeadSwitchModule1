@@ -6,6 +6,7 @@ import {
   SET_RESIZE,
   SET_EDIT,
   REMOVE_FROM_BOX,
+  SET_SCREENSHOT,
 } from "../reducers/sizeReducer/types";
 
 export const selectSizeModule = (index, data) => {
@@ -37,5 +38,11 @@ export const removeFromBOx = (index) => {
 export const handleEdit = () => {
   return {
     type: SET_EDIT,
+  };
+};
+export const setPreviewImage = (data) => {
+  return {
+    type: SET_SCREENSHOT,
+    payload: data,
   };
 };

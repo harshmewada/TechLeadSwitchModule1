@@ -49,9 +49,6 @@ const SizeBar = (props) => {
           ariaLabel="SpeedDial openIcon example"
           className={classes.speedDial}
           hidden={true}
-          // icon={<SpeedDialIcon openIcon={<EditIcon />} />}
-          // onClose={handleClose}
-          //   onOpen={handleOpen}
           open={open}
         >
           {data.map((action, index) => {
@@ -164,7 +161,7 @@ export default React.memo(SizeBar);
 //     hidden={true}
 //     // icon={<SpeedDialIcon openIcon={<EditIcon />} />}
 //     // onClose={handleClose}
-//     //   onOpen={handleOpen}
+
 //     open={open}
 //   >
 //     {data.map((action, index) => {

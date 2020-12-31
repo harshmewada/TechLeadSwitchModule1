@@ -3,7 +3,7 @@ import { SET_WALL_BACKGROUND } from "./types";
 const initialstate = {
   index: null,
   type: "color",
-  wallcolor: "#eee",
+  wallcolor: "#f5f5f5",
 };
 
 const GlassSELECT_GLASSReducer = (state = initialstate, action) => {

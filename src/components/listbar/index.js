@@ -57,6 +57,9 @@ const useStyles = makeStyles((theme) => ({
     // backgroundColor: "red",
     minWidth: 20,
     backgroundColor: "transparent",
+    [theme.breakpoints.down("md")]: {
+      backgroundColor: "transparent",
+    },
   },
   glassMargin: {
     marginTop: "25vh",
@@ -139,7 +142,6 @@ const ListBar = (props) => {
       </Hidden>
       <Hidden mdUp>
         <Drawer
-          onOpen={() => console.log("mobile sizebar open")}
           anchor="right"
           open={open}
           onClose={() => {
